@@ -14,6 +14,6 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 
 ## Configuración Inicial
 
-- [Configuración Clave SSH](https://github.com/danieeeld2/LogisticsRoutes/blob/Objetivo-0/docs/gitconfig.png)
+- [Configuración Clave SSH]([https://github.com/danieeeld2/LogisticsRoutes/blob/Objetivo-0/docs/gitconfig.png](https://github.com/danieeeld2/LogisticsRoutes/blob/Objetivo-0/docs/ssh-key.png))
 
 -  [Configuración Git](https://github.com/danieeeld2/LogisticsRoutes/blob/Objetivo-0/docs/gitconfig.png)
