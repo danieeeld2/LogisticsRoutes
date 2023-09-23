@@ -12,7 +12,7 @@ Aplicación que permita optimizar las rutas de entrega, optimizándolas en funci
 
 La aplicación persigue optimizar las rutas y reducir costos, permitiendo una mayor eficiencia y, por tanto, rentabilidad de la empresa.
 
-## Configuración Inicial
+## Documentación
 
 - [Configuración Clave SSH](https://github.com/danieeeld2/LogisticsRoutes/blob/Objetivo-0/docs/gitconfig.png)
 
