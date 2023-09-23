@@ -12,7 +12,7 @@
   
   - Estos métodos o bibliotecas conformarán un módulo que al introducir un origen y un destino, nos calcula la ruta más rápida
 
-- [ ] [[M2] Ampliación del módulo creado en [_M1_](https://github.com/danieeeld2/LogisticsRoutes/milestone/2) para que tenga en cuenta las espicifaciones del vehículo](https://github.com/danieeeld2/LogisticsRoutes/milestone/3)
+- [ ] [[M2] Ampliación del módulo creado en _M1_ para que tenga en cuenta las espicifaciones del vehículo](https://github.com/danieeeld2/LogisticsRoutes/milestone/3)
   
   - Ampliar el módulo anterior por si el vehículo no puede pasar por alguno de los tramos de la ruta como consecuencia de sus especificaciones
 
