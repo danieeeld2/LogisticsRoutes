@@ -1,13 +1,14 @@
 # Historias de Usuarios
 
-* [[HU1] Mario, repartidor de paquetes. Quiere saber cuál es la ruta más óptima desde la oficina hasta el punto de entrega](https://github.com/danieeeld2/LogisticsRoutes/issues/2)
-Quiere disminuir el tiempo que tarda en transportar los paquetes a los destinos desde su sucursal.
+* [[HU1] Lucía, gerente de operaciones en logística](https://github.com/danieeeld2/LogisticsRoutes/issues/5)
+Lucía es gerente de operaciones en una empresa que trabaja con distintas materias primas, así como residuos tóxicos. Ella es la encargada de asignar los camiones para los distintos repartos, pero la flota de la que dispone es un tanto escasa, por lo que a veces se quedan sin vehículos.
 
-* [[HU2] Alfonso, camionero. Quiere pasar menos tiempo en la carretera](https://github.com/danieeeld2/LogisticsRoutes/issues/3)
-Alfonso quiere saber cuál es la ruta más optima para llegar a su destino, pero debe tener cuidado con las dimensiones y tamaño de su vehículo.
+* [[HU2] Mario, gerente de operaciones en logística](https://github.com/danieeeld2/LogisticsRoutes/issues/2)
+Mario trabaja con Lucía y se encarga de planificar todas las entregas que se van a hacer ese día. Suele realizar esta tarea a mano y ayudado de las asignaciones que hace Lucía, pero siente que no están haciendo bien su trabajo y que hacen muchas menos entregas de las que podrían repartir.
 
-* [[HU3] Elena, dueña de un prestigioso restaurante. Quiere saber cuando llegarán las mercancías solicitadas](https://github.com/danieeeld2/LogisticsRoutes/issues/4)
-Elena le gustaría hacer un seguimiento a tiempo real del reparto de los productos que solicita.
+* [[HU3] Alfonso, camionero](https://github.com/danieeeld2/LogisticsRoutes/issues/3)
+A Alfonso le gustaría saber cuál es la ruta más óptima para llegar a su destino, pero suele conducir un vehículo con muchas restricciones.
 
-* [[HU4] Lucía, gerente de operaciones en logística. Quiere asignar los camiones y las rutas de la forma más óptima posible](https://github.com/danieeeld2/LogisticsRoutes/issues/5)
-Quiere optimizar la asignación de rutas y camiones a la flota.
+* [[HU4] Elena, dueña de un prestigioso restaurante](https://github.com/danieeeld2/LogisticsRoutes/issues/4)
+A Elena le gustaría hacer un seguimiento a tiempo real del reparto de los productos que solicita.
+

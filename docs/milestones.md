@@ -1,23 +1,24 @@
 # Milestones
 
-- [ ] [[M0] Diseño de las estructuras de datos en ficheros](https://github.com/danieeeld2/LogisticsRoutes/milestone/1)
+- [ ] [[M0] Modelo del problema](https://github.com/danieeeld2/LogisticsRoutes/milestone/1)
   
-  _Teniendo en cuenta lo hablado con los usuarios y el contexto que estos nos proporcionan, necesitamos las siguientes estructuras de datos:_ 
-  
-  - Una estructura de datos que nos permita obtener el recorrido más eficiente entre el punto de inicio y el punto de entrega (_Modeliza las carreteras_)
-  
-  - Una estructura que almacene las especificaciones del vehículo (_dimensión, peso, indicación de que transporta mercancía peligrosa o no_)
+  - **Objetivo**: Analizar las HUs para identificar y extraer los elementos del dominio del problema y codificarlos
+  - Se entregará un código modularizado del modelo del problema, el cuál, será viable cuando lo apruebe el product manager (que en este caso somos nosotros).
 
-- [ ] [[M1]  Diseño de métodos o utilización de bibliotecas que nos permitan generar la ruta óptima dados un origen y un destino](https://github.com/danieeeld2/LogisticsRoutes/milestone/2)
+- [ ] [[M1]  Implementación de la asignación de vehículos de forma óptima](https://github.com/danieeeld2/LogisticsRoutes/milestone/2)
   
-  - Estos métodos o bibliotecas conformarán un módulo que al introducir un origen y un destino, nos calcula la ruta más rápida
+  - **Objetivo**: Implementar clase o módulo que, dado un producto a entregar, le asigne el vehículo o conjunto de vehículos más óptimos para su entrega.
+  - Se entregará un código fuente de las clases o módulos, los cuales serán viables cuando pasen los respectivos tests.
 
-- [ ] [[M2] Ampliación del módulo creado en _M1_ para que tenga en cuenta las espicifaciones del vehículo](https://github.com/danieeeld2/LogisticsRoutes/milestone/3)
+- [ ] [[M2] Implementación de la planificación de reparto diario de forma óptima](https://github.com/danieeeld2/LogisticsRoutes/milestone/3)
   
-  - Ampliar el módulo anterior por si el vehículo no puede pasar por alguno de los tramos de la ruta como consecuencia de sus especificaciones
+  - **Objetivo**: Implementar clase o módulo que, teniendo en cuenta la forma de asignación enterior y los vehículos disponibles, te planifique las entregas diarias, primando la mayor cantidad de entregas posibles.
+  - Se entregará un código fuente de las clases o módulos, los cuales serán viables cuando pasen los respectivos tests.
+  
+### Milestones adicionales
 
-- [ ] [[M3] Diseño o utilización de alguna librería que permita hacer un seguimiento en tiempo real de un vehículo en reparto](https://github.com/danieeeld2/LogisticsRoutes/milestone/4)
+- [ ] [[M3] Implementación de busqueda de ruta óptima](https://github.com/danieeeld2/LogisticsRoutes/milestone/4)
 
-- [ ] [[M4] Diseño de unos métodos de fichero o uso de bibliotecas que permitan hacer una planificación de una flota de camiones](https://github.com/danieeeld2/LogisticsRoutes/milestone/5)
+- [ ] [[M4] Implementación de seguimiento de estado a tiempo real](https://github.com/danieeeld2/LogisticsRoutes/milestone/5)
   
   - Ampliación de [_M2_](https://github.com/danieeeld2/LogisticsRoutes/milestone/3) para que se pueda gestionar varios vehículos con distintas especificaciones al mismo tiempo
