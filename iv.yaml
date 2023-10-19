@@ -1,2 +1,2 @@
-lenguaje: 
-entidad:
+lenguaje: go
+entidad: internal/main.go
