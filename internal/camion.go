@@ -1,0 +1,15 @@
+package internal
+
+type tipoCamion int
+
+const (
+	NORMAL      tipoCamion = "normal"
+	FRIGORIFICO tipoCamion = "frigorifico"
+	QUIMICO     tipoCamion = "quimico"
+)
+
+type Camion struct {
+	tipo      tipoCamion
+	capacidad [3]float32
+	mma       uint
+}
