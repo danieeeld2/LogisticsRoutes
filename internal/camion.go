@@ -1,6 +1,6 @@
 package internal
 
-type tipoCamion int
+type tipoCamion string
 
 const (
 	NORMAL       tipoCamion = "normal"
