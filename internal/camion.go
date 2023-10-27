@@ -3,9 +3,9 @@ package internal
 type tipoCamion int
 
 const (
-	NORMAL      tipoCamion = "normal"
-	FRIGORIFICO tipoCamion = "frigorifico"
-	QUIMICO     tipoCamion = "quimico"
+	NORMAL       tipoCamion = "normal"
+	FRIGORIFICO  			= "frigorifico"
+	QUIMICO 				= "quimico"
 )
 
 type Camion struct {
