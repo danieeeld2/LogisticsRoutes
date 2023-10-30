@@ -12,32 +12,32 @@ var BIN = "./bin"
 var CODE_FOLDERS = "internal/*"
 
 // Construir el programa principal
-func Build() {
+func build() {
 	fmt.Println("Construyendo el proyecto...")
 	runCommand("go", "build")
 }
 
 // Instalación de las dependencias
-func InstallDeps() {
+func installdeps() {
 	fmt.Println("Instalando las dependencias...")
 	runCommand("go", "mod", "tidy")
 }
 
 // Ejecutar el programa
-func Run() {
+func run() {
 	fmt.Printf("Ejecutando el programa %s...\n", BINARY_NAME)
 	runCommand(filepath.Join(BIN, BINARY_NAME))
 }
 
 // Limpiar el proyecto
-func Clean() {
+func clean() {
 	fmt.Println("Limpiando los binarios...")
 	os.RemoveAll(filepath.Join(BIN, BINARY_NAME))
 	runCommand("go", "clean", "./...")
 }
 
 // Comprobar la sintaxis
-func Check() {
+func check() {
 	fmt.Println("Comprobando sintaxis del proyecto...")
 	runCommand("gofmt", "-l", CODE_FOLDERS)
 }

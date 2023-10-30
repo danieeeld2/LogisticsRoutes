@@ -33,10 +33,10 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 - **Lenguaje de programación**: Go
 
 - **Task Manager**: Mage
-	- `mage Build` : Construye el proyecto
-	- `mage InstallDeps` : Instalación de dependencias
-	- `mage Run` : Ejecuta el programa
-	- `mage Clean` : Limpia el proyecto
-	- `mage Check` : Comprueba la sintaxis
+	- `mage build` : Construye el proyecto
+	- `mage installdeps` : Instalación de dependencias
+	- `mage run` : Ejecuta el programa
+	- `mage clean` : Limpia el proyecto
+	- `mage check` : Comprueba la sintaxis
 	
 - Como podemos ver el el punto anterior, se ha añadido la tarea **check** para comprobar la sintaxis de las entidades.
