@@ -1,2 +1,5 @@
 lenguaje: go
 entidad: internal/planificacion.go
+automatizar:
+  fichero: magefile.go
+  orden: mage
