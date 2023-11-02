@@ -13,7 +13,3 @@ type Camion struct {
 	capacidad 		[3]float32
 	mma       		uint
 }
-
-func (c Camion) getSuministro(i uint) Suministro {
-	return c.suministros[i]
-}
