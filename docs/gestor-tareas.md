@@ -8,8 +8,6 @@ Necesitamos elegir un **Task Runner** para automatizar tareas repetitivas y ayud
 
 - **Task**: Es otra herramienta para la automatización de tareas en Go. Permite definir tareas en un archivo `Taskfile.yml` y ejecutarlas desde línea de comando.
 
-Trás investigar un poco más, las dos opciones más sólidas son **Make** o **Mage**, así que veamos sus ventajas y desventajas:
-
 #### Mage
 ##### Ventajas:
 
@@ -39,6 +37,25 @@ Trás investigar un poco más, las dos opciones más sólidas son **Make** o **M
 - Sintaxis confusa dependiendo del proyecto, lo que puede llevar a una menor claridad y mantenibilidad.
 
 - Menos modularidad que Mage
+
+#### Task
+##### Ventajas:
+
+- Utiliza un archivo `.yml` para la gestión de las tareas.
+
+- Bastante documentación y extendido entre las comunidades de Go.
+
+- Incluye una alta gama de complementos (plugins) que facilitan la integración con docker.
+
+##### Desventajas:
+
+- Al utilizar un archivo `.yml` puede haber menos flexibilidad a la hora de personalizar tareas o flujos de trabajo complejos.
+
+- Si contamos con experiencia en Go, puede ser menos versátil en términos de personalización y extensibilidad en comparación con Mage.
+
+Claramente, pese a que la herramienta más elegida en la mayoría de lenguajes es **Make**, como estamos en un proyecto en Go, usar **Task** o **Mage** es más beneficioso en nuestro caso.
+
+### Elección
 
 Teniendo en cuenta los criterios reflejados en [Elección de ToolChain](https://github.com/danieeeld2/LogisticsRoutes/issues/15), **Mage** es una elección sólida para nuestro proyecto, el cuál, esta diseñado en Go; por lo que podemos definir directamente las tareas en este lenguaje, beneficiando así la mantenibilidad e integración natural del sistema. Por lo que, a pesar de no ser la opción más popular, esta vez nos quedaremos con **Mage** por las razones previamente explicadas. 
 
