@@ -9,3 +9,5 @@ No existe un gestor de dependencias como tal, sino que las dependencias se gesti
 Además, la gestión de dependencias en este lenguaje es descentralizada, lo que permite tratar un enlace a un repositorio git como un módulo más.
 
 Por último, **Go Module** incluye una serie de comandos que nos ayudan con la gestión de estas dependencias, como son: `go get`, `go mod tidy`,..., entre otros.
+
+Existen otros gestores de dependencias externos, como son **Dep** o **Glide**. El problema es que desde que el propio lenguaje incluyó **Go Module**, estos gestores están en desuso y su desarrollo se ha realentizado. Debido a esto, no tiene sentido coger un gestor de dependencias externo, cuando el propio Go incorpora su propio gestor, que es una solución oficial, respaldada por la comunidad y el propio equipo que lleva el lenguaje.
