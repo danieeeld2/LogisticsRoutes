@@ -1,7 +1,7 @@
 package internal
 
 type Camion struct {
-	tipo      		TipoSuministro
-	capacidad 		[3]float32
-	mma       		uint
+	tipo      				TipoSuministro
+	dimensiones_whd_cm		[3]float32
+	mma       				uint
 }
