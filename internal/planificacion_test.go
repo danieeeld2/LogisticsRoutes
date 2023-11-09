@@ -22,7 +22,7 @@ func PuedeTransportarSuministro(camiones []Camion, suministro Suministros) bool 
 		volumen_total += camion.dimensiones_whd_cm[0]*camion.dimensiones_whd_cm[1]*camion.dimensiones_whd_cm[2]
 	}
 	
-	if suma_mma < suministro.mma || volumen_total < volumen_suministro {
+	if suma_mma <= suministro.mma || volumen_total <= volumen_suministro {
 		return false
 	}
 	
@@ -57,6 +57,52 @@ func EsMasChico(camion1 []Camion, camion2 []Camion) bool {
 	return true
 }
 
-func TestPlanificacion(t *testing.T) {
-		
+func CalcularConjuntosDeCamiones(camiones []Camion, t uint) [][]Camion{
+	resultado := [][]Camion{{}}
+
+	for _, elemento := range camiones {
+		subconjuntosTemporales := [][]Camion{}
+
+		for _, conjunto := range resultado {
+			if len(conjunto) < t {
+				// Agregamos el elemento al subconjunto actual
+				nuevoSubconjunto := append([]Camion{}, conjunto...)
+				nuevoSubconjunto = append(nuevoSubconjunto, elemento)
+				subconjuntosTemporales = append(subconjuntosTemporales, nuevoSubconjunto)
+			}
+		}
+
+		resultado = append(resultado, subconjuntosTemporales...)
+	}
+
+	return resultado
 }
+
+func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suministros, CamionesAsignados []Camion) bool {
+	if !PuedeTransportarSuministro(CamionesAsignados, suministro) {
+		return false
+	}
+	
+	if len(CamionesDisponibles) == 0 {
+		if len(CamionesAsignados) == 0 {
+			return true
+		}
+	}
+	
+	if len(CamionesAsignados) > 0 {
+		conjuntos_camiones_disponibles := CalcularConjuntosDeCamiones(CamionesDisponibles, len(CamionesAsignados))
+		for _, conjunto := range conjuntos_camiones_disponibles {
+			if PuedeTransporarSuministro(conjunto, suministro) && EsMasChico(conjunto, CamionesAsignados) {
+				return false
+			}
+		}
+	}
+	
+	
+	return true
+} 
+
+func TestPlanificacion(t *testing.T) {
+
+}
+
