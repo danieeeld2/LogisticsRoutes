@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func PuedeTransportarSuministro(camiones []Camion, suministro Suministros) bool {
+func PuedeTransportarSuministro(camiones []Camion, suministro Suministro) bool {
 	for _, camion := range camiones {
 		if camion.tipo != suministro.tipo {
 			return false
@@ -22,7 +22,7 @@ func PuedeTransportarSuministro(camiones []Camion, suministro Suministros) bool 
 		volumen_total += camion.dimensiones_whd_cm[0]*camion.dimensiones_whd_cm[1]*camion.dimensiones_whd_cm[2]
 	}
 	
-	if suma_mma <= suministro.mma || volumen_total <= volumen_suministro {
+	if float32(suma_mma) <= suministro.peso_kg || volumen_total <= volumen_suministro {
 		return false
 	}
 	
@@ -57,7 +57,7 @@ func EsMasChico(camion1 []Camion, camion2 []Camion) bool {
 	return true
 }
 
-func CalcularConjuntosDeCamiones(camiones []Camion, t uint) [][]Camion{
+func CalcularConjuntosDeCamiones(camiones []Camion, t int) [][]Camion{
 	resultado := [][]Camion{{}}
 
 	for _, elemento := range camiones {
@@ -77,7 +77,7 @@ func CalcularConjuntosDeCamiones(camiones []Camion, t uint) [][]Camion{
 	return resultado
 }
 
-func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suministros, CamionesAsignados []Camion) bool {
+func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suministro, CamionesAsignados []Camion) bool {
 	if !PuedeTransportarSuministro(CamionesAsignados, suministro) && len(CamionesAsignados) > 0{
 		return false
 	}
@@ -91,7 +91,7 @@ func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suminist
 	if len(CamionesAsignados) > 0 {
 		conjuntos_camiones_disponibles := CalcularConjuntosDeCamiones(CamionesDisponibles, len(CamionesAsignados))
 		for _, conjunto := range conjuntos_camiones_disponibles {
-			if PuedeTransporarSuministro(conjunto, suministro) && EsMasChico(conjunto, CamionesAsignados) {
+			if PuedeTransportarSuministro(conjunto, suministro) && EsMasChico(conjunto, CamionesAsignados) {
 				return false
 			}
 		}
@@ -102,48 +102,48 @@ func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suminist
 } 
 
 func TestPlanificacion(t *testing.T) {
-	t.log("Comenzando test de planificacion")
+	t.Log("Comenzando test de planificacion")
 
 	camionesDisponibles := []Camion{}
 	CamionesAsignados := []Camion{}
-	suministro := NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro.NORMAL)
+	suministro := NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro(NORMAL))
 
-	t.log("No hay camiones disponibles ni asignados")
+	t.Log("No hay camiones disponibles ni asignados")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion no es optima")
 	}
 
-	camionesDisponibles.append(NewCamion(TipoSuministro.NORMAL, [3]float32{10, 10, 10}, 100))
-	camionesDisponibles.append(NewCamion(TipoSuministro.QUIMICO, [3]float32{100, 100, 100}, 100))
-	camionesDisponibles.append(NewCamion(TipoSuministro.NORMAL, [3]float32{1000, 1000, 1000}, 100))
-	camionesDisponibles.append(NewCamion(TipoSuministro.NORMAL, [3]float32{1000, 1000, 1000}, 1000))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{10, 10, 10}, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(QUIMICO), [3]float32{100, 100, 100}, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{1000, 1000, 1000}, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{1000, 1000, 1000}, 1000))
 	CamionesAsignados = []Camion{}
-	t.log("Hay varios camiones disponibles que pueden transportar el vehículo")
+	t.Log("Hay varios camiones disponibles que pueden transportar el vehículo")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion no es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 10000, [3]float32{1000, 1000, 1000}, TipoSuministro.NORMAL)
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 10000, [3]float32{1000, 1000, 1000}, TipoSuministro(NORMAL))
 	CamionesAsignados = []Camion{}
-	t.log("Hay varios camiones disponibles pero ninguno puede transportar el suministro")
+	t.Log("Hay varios camiones disponibles pero ninguno puede transportar el suministro")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro.QUIMICO)
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro(QUIMICO))
 	CamionesAsignados = []Camion{}
-	t.log("Comprobar que le asigna el de tipo correcto")
+	t.Log("Comprobar que le asigna el de tipo correcto")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion no es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 1050, [3]float32{10, 10, 10}, TipoSuministro.NORMAL)
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 1050, [3]float32{10, 10, 10}, TipoSuministro(NORMAL))
 	CamionesAsignados = []Camion{}
-	t.log("Necesita mas de un camión para ser transportado")
+	t.Log("Necesita mas de un camión para ser transportado")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion no es optima")
