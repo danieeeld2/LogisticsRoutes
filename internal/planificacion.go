@@ -14,6 +14,31 @@ func EliminarElemento(slice []Camion, indice int) []Camion {
 	return append(slice[:indice], slice[indice+1:]...)
 }
 
+func PuedeTransportarSuministro(camiones []Camion, suministro Suministro) bool {
+	for _, camion := range camiones {
+		if camion.tipo != suministro.tipo {
+			return false
+		}
+	}
+	
+	var suma_mma uint
+	var volumen_total, volumen_suministro float32
+	
+	suma_mma = 0 
+	volumen_total = 0 
+	volumen_suministro = suministro.dimensiones_whd_cm[0]*suministro.dimensiones_whd_cm[1]*suministro.dimensiones_whd_cm[2] 
+	for _, camion := range camiones {
+		suma_mma += camion.mma
+		volumen_total += camion.dimensiones_whd_cm[0]*camion.dimensiones_whd_cm[1]*camion.dimensiones_whd_cm[2]
+	}
+	
+	if float32(suma_mma) <= suministro.peso_kg || volumen_total <= volumen_suministro {
+		return false
+	}
+	
+	return true
+}
+
 func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, CamionesAsignados *[]Camion) {
 		if len(*CamionesDisponibles) == 0 {
 			return
