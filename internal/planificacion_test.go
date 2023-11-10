@@ -77,30 +77,6 @@ func CalcularConjuntosDeCamiones(camiones []Camion, t uint) [][]Camion{
 	return resultado
 }
 
-func FiltrarPorTipo(subconjuntos [][]Camion) [][]Camion {
-	var subconjuntosFiltrados [][]Camion
-
-	for _, conjunto := range subconjuntos {
-		tipoAnterior := TipoSuministro("") 
-
-		todosDelMismoTipo := true
-		for _, camion := range conjunto {
-			if tipoAnterior == "" {
-				tipoAnterior = camion.tipo
-			} else if camion.tipo != tipoAnterior {
-				todosDelMismoTipo = false
-				break
-			}
-			tipoAnterior = camion.tipo
-		}
-
-		if todosDelMismoTipo {
-			subconjuntosFiltrados = append(subconjuntosFiltrados, conjunto)
-		}
-	}
-
-	return subconjuntosFiltrados
-}
 func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suministros, CamionesAsignados []Camion) bool {
 	if !PuedeTransportarSuministro(CamionesAsignados, suministro) && len(CamionesAsignados) > 0{
 		return false
