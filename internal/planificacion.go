@@ -5,3 +5,7 @@ type Planificacion struct {
 	suministros 		[]Suministro
 	asignacion		map[Camion][]Suministro
 }
+
+
+func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, CamionesAsignados *[]Camion) {
+}

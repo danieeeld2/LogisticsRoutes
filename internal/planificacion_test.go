@@ -65,7 +65,6 @@ func CalcularConjuntosDeCamiones(camiones []Camion, t uint) [][]Camion{
 
 		for _, conjunto := range resultado {
 			if len(conjunto) < t {
-				// Agregamos el elemento al subconjunto actual
 				nuevoSubconjunto := append([]Camion{}, conjunto...)
 				nuevoSubconjunto = append(nuevoSubconjunto, elemento)
 				subconjuntosTemporales = append(subconjuntosTemporales, nuevoSubconjunto)
@@ -103,6 +102,20 @@ func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suminist
 } 
 
 func TestPlanificacion(t *testing.T) {
+	t.log("Comenzando test de planificacion")
+	t.log("Suministro, no hay camiones disponibles y hay camión asignado")
+	
+	t.log("Suministro pequeño y muchos camiones que cumplan las especificaciones")
+
+	t.log("Suministro grande y muchos camiones que cumplan las especificaciones")
+
+	t.log("Suministro pequeño y muchos camiones que no cumplan las especificaciones")
+
+	t.log("Suministro grande y muchos camiones que no cumplan las especificaciones")
+
+	t.log("Suministro grande y se necesita más de un camión que cumpla las especificaciones")
+
+	t.log("Suministro que no estra en ningún camión ni conjunto de camiones")
 
 }
 
