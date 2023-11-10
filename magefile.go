@@ -57,3 +57,22 @@ func Check() {
 	sh.Run("gofmt", "-l", internalPath)
 	println("Check finalizado")
 }
+
+// Ejecutar pruebas
+func Test() {
+	internalPath := "./" + CODE_FOLDERS
+	println("Ejecutando pruebas...")
+	execCmd("go", "test", "-v", internalPath)
+	println("Pruebas finalizadas")
+}
+
+func execCmd(name string, args ...string) {
+	cmd := exec.Command(name, args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		println("Error executing command: %v\n", err)
+		os.Exit(1)
+	}
+}

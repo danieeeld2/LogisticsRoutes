@@ -3,3 +3,4 @@ entidad: internal/planificacion.go
 automatizar:
   fichero: magefile.go
   orden: mage
+test: internal/planificacion_test.go

@@ -38,5 +38,7 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 	- `mage run` : Ejecuta el programa
 	- `mage clean` : Limpia el proyecto
 	- `mage check` : Comprueba la sintaxis
+	- `mage test` : Realiza los test y te dá la salida por terminal
 	
 - Como podemos ver el el punto anterior, se ha añadido la tarea **check** para comprobar la sintaxis de las entidades.
+- Como podemos ver hemos añadido también la tarea **test** para realizar los tests.
