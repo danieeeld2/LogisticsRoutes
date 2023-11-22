@@ -74,7 +74,14 @@ func ComprobarAsignacionOptima(CamionesDisponibles []Camion, suministro Suminist
 	
 	
 	return true
-} 
+}
+
+var camionesPrueba = []Camion{
+	NewCamion(TipoSuministro(NORMAL), 1000, 100),
+	NewCamion(TipoSuministro(QUIMICO), 1000000, 100),
+	NewCamion(TipoSuministro(NORMAL), 1000000, 100),
+	NewCamion(TipoSuministro(NORMAL), 1000000, 1000),
+}
 
 func TestPlanificacion(t *testing.T) {
 	t.Log("Comenzando test de planificacion")
@@ -89,10 +96,7 @@ func TestPlanificacion(t *testing.T) {
 		t.Error("La asignacion no es optima")
 	}
 
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(QUIMICO), 1000000, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000000, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000000, 1000))
+	camionesDisponibles = append(camionesDisponibles, camionesPrueba...)
 	CamionesAsignados = []Camion{}
 	t.Log("Hay varios camiones disponibles que pueden transportar el vehículo")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)

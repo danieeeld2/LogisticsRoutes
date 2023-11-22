@@ -14,6 +14,26 @@ func EliminarElemento(slice []Camion, indice int) []Camion {
 	return append(slice[:indice], slice[indice+1:]...)
 }
 
+type camionPosicion struct {
+	camion Camion
+	posicion int
+}
+
+func ordenarCamiones(camiones []camionPosicion, ascendente bool) {
+	sort.Slice(camiones, func(i, j int) bool {
+		volumenI := camiones[i].camion.volumen_cm3
+		volumenJ := camiones[j].camion.volumen_cm3
+		masaI := camiones[i].camion.mma
+		masaJ := camiones[j].camion.mma
+
+		if ascendente {
+			return volumenI < volumenJ && masaI < masaJ
+		} else {
+			return volumenI > volumenJ && masaI > masaJ
+		}
+	})
+}
+
 func PuedeTransportarSuministro(camiones []Camion, suministro Suministro) bool {
 	for _, camion := range camiones {
 		if camion.tipo != suministro.tipo {
@@ -43,11 +63,6 @@ func AsigarCamiones(camionesDisponibles *[]Camion, suministro Suministro, camion
 			return
 		}
 
-		type camionPosicion struct {
-			camion Camion
-			posicion int
-		}
-
 		camionesMismoTipo := []camionPosicion{}
 		posicion := 0
 		for _, camion := range *camionesDisponibles {
@@ -57,13 +72,7 @@ func AsigarCamiones(camionesDisponibles *[]Camion, suministro Suministro, camion
 			posicion++
 		}
 
-		sort.Slice(camionesMismoTipo, func(i, j int) bool {
-			volumenI := camionesMismoTipo[i].camion.volumen_cm3
-			volumenJ := camionesMismoTipo[j].camion.volumen_cm3
-			masaI := camionesMismoTipo[i].camion.mma
-			masaJ := camionesMismoTipo[j].camion.mma
-			return volumenI < volumenJ && masaI < masaJ
-		})
+		ordenarCamiones(camionesMismoTipo, true)
 
 		for _, c := range camionesMismoTipo {
 			camion_array := []Camion{c.camion}
@@ -74,13 +83,7 @@ func AsigarCamiones(camionesDisponibles *[]Camion, suministro Suministro, camion
 			}
 		}
 
-		sort.Slice(camionesMismoTipo, func(i, j int) bool {
-			volumenI := camionesMismoTipo[i].camion.volumen_cm3
-			volumenJ := camionesMismoTipo[j].camion.volumen_cm3
-			masaI := camionesMismoTipo[i].camion.mma
-			masaJ := camionesMismoTipo[j].camion.mma
-			return volumenI > volumenJ && masaI > masaJ
-		})
+		ordenarCamiones(camionesMismoTipo, false)
 
 		copia_temporal_disponibles := *camionesDisponibles
 		var asignados []Camion
