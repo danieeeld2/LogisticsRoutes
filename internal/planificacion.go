@@ -6,7 +6,7 @@ import (
 
 type Planificacion struct {
 	camiones		[]Camion
-	suministros 		[]Suministro
+	suministros 	[]Suministro
 	asignacion		map[Camion][]Suministro
 }
 
@@ -22,25 +22,24 @@ func PuedeTransportarSuministro(camiones []Camion, suministro Suministro) bool {
 	}
 	
 	var suma_mma uint
-	var volumen_total, volumen_suministro float32
+	var volumen_total float32
 	
 	suma_mma = 0 
 	volumen_total = 0 
-	volumen_suministro = suministro.dimensiones_whd_cm[0]*suministro.dimensiones_whd_cm[1]*suministro.dimensiones_whd_cm[2] 
 	for _, camion := range camiones {
 		suma_mma += camion.mma
-		volumen_total += camion.dimensiones_whd_cm[0]*camion.dimensiones_whd_cm[1]*camion.dimensiones_whd_cm[2]
+		volumen_total += camion.volumen_cm3
 	}
 	
-	if float32(suma_mma) <= suministro.peso_kg || volumen_total <= volumen_suministro {
+	if float32(suma_mma) <= suministro.peso_kg || volumen_total <= suministro.volumen_cm3 {
 		return false
 	}
 	
 	return true
 }
 
-func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, CamionesAsignados *[]Camion) {
-		if len(*CamionesDisponibles) == 0 {
+func AsigarCamiones(camionesDisponibles *[]Camion, suministro Suministro, camionesAsignados *[]Camion) {
+		if len(*camionesDisponibles) == 0 {
 			return
 		}
 
@@ -51,7 +50,7 @@ func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, Camion
 
 		camionesMismoTipo := []camionPosicion{}
 		posicion := 0
-		for _, camion := range *CamionesDisponibles {
+		for _, camion := range *camionesDisponibles {
 			if camion.tipo == suministro.tipo {
 				camionesMismoTipo = append(camionesMismoTipo, camionPosicion{camion, posicion})
 			}
@@ -59,8 +58,8 @@ func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, Camion
 		}
 
 		sort.Slice(camionesMismoTipo, func(i, j int) bool {
-			volumenI := calcularVolumen(camionesMismoTipo[i].camion)
-			volumenJ := calcularVolumen(camionesMismoTipo[j].camion)
+			volumenI := camionesMismoTipo[i].camion.volumen_cm3
+			volumenJ := camionesMismoTipo[j].camion.volumen_cm3
 			masaI := camionesMismoTipo[i].camion.mma
 			masaJ := camionesMismoTipo[j].camion.mma
 			return volumenI < volumenJ && masaI < masaJ
@@ -69,33 +68,33 @@ func AsigarCamiones(CamionesDisponibles *[]Camion, suministro Suministro, Camion
 		for _, c := range camionesMismoTipo {
 			camion_array := []Camion{c.camion}
 			if PuedeTransportarSuministro(camion_array, suministro) {
-				*CamionesAsignados = append(*CamionesAsignados, c.camion)
-				*CamionesDisponibles = EliminarElemento(*CamionesDisponibles, c.posicion)
+				*camionesAsignados = append(*camionesAsignados, c.camion)
+				*camionesDisponibles = EliminarElemento(*camionesDisponibles, c.posicion)
 				return
 			}
 		}
 
 		sort.Slice(camionesMismoTipo, func(i, j int) bool {
-			volumenI := calcularVolumen(camionesMismoTipo[i].camion)
-			volumenJ := calcularVolumen(camionesMismoTipo[j].camion)
+			volumenI := camionesMismoTipo[i].camion.volumen_cm3
+			volumenJ := camionesMismoTipo[j].camion.volumen_cm3
 			masaI := camionesMismoTipo[i].camion.mma
 			masaJ := camionesMismoTipo[j].camion.mma
 			return volumenI > volumenJ && masaI > masaJ
 		})
 
-		copia_temporal_disponibles := *CamionesDisponibles
+		copia_temporal_disponibles := *camionesDisponibles
 		var asignados []Camion
 
 		for _, c := range camionesMismoTipo {
 			if PuedeTransportarSuministro(asignados, suministro) {
-				*CamionesAsignados = append(*CamionesAsignados, asignados...)
+				*camionesAsignados = append(*camionesAsignados, asignados...)
 				return
 			}
 			asignados = append(asignados, c.camion)
-			copia_temporal_disponibles = EliminarElemento(*CamionesDisponibles, c.posicion)
+			copia_temporal_disponibles = EliminarElemento(*camionesDisponibles, c.posicion)
 		}
 
-		*CamionesDisponibles = copia_temporal_disponibles
+		*camionesDisponibles = copia_temporal_disponibles
 
 		return		
 }

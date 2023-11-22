@@ -18,11 +18,11 @@ func EsMasChico(camion1 []Camion, camion2 []Camion) bool {
 	volumen_total_2 = 0
 	for _, camion := range camion1 {
 		suma_mma_1 += camion.mma
-		volumen_total_1 += camion.dimensiones_whd_cm[0] * camion.dimensiones_whd_cm[1] * camion.dimensiones_whd_cm[2]
+		volumen_total_1 += camion.volumen_cm3
 	}
 	for _, camion := range camion2 {
 		suma_mma_2 += camion.mma
-		volumen_total_2 += camion.dimensiones_whd_cm[0] * camion.dimensiones_whd_cm[1] * camion.dimensiones_whd_cm[2]
+		volumen_total_2 += camion.volumen_cm3
 	}
 	
 	if suma_mma_2 < suma_mma_1 && volumen_total_2 < volumen_total_1 {
@@ -81,7 +81,7 @@ func TestPlanificacion(t *testing.T) {
 
 	camionesDisponibles := []Camion{}
 	CamionesAsignados := []Camion{}
-	suministro := NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro(NORMAL))
+	suministro := NuevoSuministro("Calle Falsa 123", 10, 100, 1000, TipoSuministro(NORMAL))
 
 	t.Log("No hay camiones disponibles ni asignados")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -89,10 +89,10 @@ func TestPlanificacion(t *testing.T) {
 		t.Error("La asignacion no es optima")
 	}
 
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{10, 10, 10}, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(QUIMICO), [3]float32{100, 100, 100}, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{1000, 1000, 1000}, 100))
-	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), [3]float32{1000, 1000, 1000}, 1000))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(QUIMICO), 1000000, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000000, 100))
+	camionesDisponibles = append(camionesDisponibles, NewCamion(TipoSuministro(NORMAL), 1000000, 1000))
 	CamionesAsignados = []Camion{}
 	t.Log("Hay varios camiones disponibles que pueden transportar el vehículo")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -100,7 +100,7 @@ func TestPlanificacion(t *testing.T) {
 		t.Error("La asignacion no es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 10000, [3]float32{1000, 1000, 1000}, TipoSuministro(NORMAL))
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(NORMAL))
 	CamionesAsignados = []Camion{}
 	t.Log("Hay varios camiones disponibles pero ninguno puede transportar el suministro")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -108,7 +108,7 @@ func TestPlanificacion(t *testing.T) {
 		t.Error("La asignacion es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 100, [3]float32{10, 10, 10}, TipoSuministro(QUIMICO))
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 100, 1000, TipoSuministro(QUIMICO))
 	CamionesAsignados = []Camion{}
 	t.Log("Comprobar que le asigna el de tipo correcto")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -116,7 +116,7 @@ func TestPlanificacion(t *testing.T) {
 		t.Error("La asignacion no es optima")
 	}
 
-	suministro = NuevoSuministro("Calle Falsa 123", 10, 1050, [3]float32{10, 10, 10}, TipoSuministro(NORMAL))
+	suministro = NuevoSuministro("Calle Falsa 123", 10, 1050, 1000, TipoSuministro(NORMAL))
 	CamionesAsignados = []Camion{}
 	t.Log("Necesita mas de un camión para ser transportado")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
