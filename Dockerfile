@@ -15,4 +15,4 @@ USER test
 
 COPY internal internal
 
-CMD ["cd", "internal", "go","test", "-v", "."]
+CMD ["go","test", "-v", "./internal"]
