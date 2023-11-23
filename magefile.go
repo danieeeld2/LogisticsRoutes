@@ -1,45 +1,78 @@
+//go:build mage
+//+build mage
+
 package main
 
 import (
-	"fmt"
+	"github.com/magefile/mage/sh"
+	
 	"os"
 	"os/exec"
 	"path/filepath"
 )
 
 var BINARY_NAME = "logistics-routes"
-var BIN = "./bin"
-var CODE_FOLDERS = "internal/*"
+var BIN = "bin"
+var CODE_FOLDERS = "internal"
 
 // Construir el programa principal
-func build() {
-	fmt.Println("Construyendo el proyecto...")
-	runCommand("go", "build")
+func Build() error {
+	internalPath := "./" + CODE_FOLDERS
+	files, err := filepath.Glob(filepath.Join(internalPath, "*.go"))
+	if err != nil {
+		return err
+	}
+	
+	args := append([]string{"build"}, files...)
+	cmd := exec.Command("go", args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	
+	return cmd.Run()
 }
 
 // Instalación de las dependencias
-func installdeps() {
-	fmt.Println("Instalando las dependencias...")
-	runCommand("go", "mod", "tidy")
+func Installdeps() {
+	println("Instalando las dependencias...")
+	sh.Run("go", "mod", "tidy")
+	println("Instalación de dependencias finalizada")
 }
 
 // Ejecutar el programa
-func run() {
-	fmt.Printf("Ejecutando el programa %s...\n", BINARY_NAME)
-	runCommand(filepath.Join(BIN, BINARY_NAME))
+func Run() {
+	println("Ejecutando el programa %s...\n", BINARY_NAME)
+	// runCommand(filepath.Join(BIN, BINARY_NAME))
 }
 
 // Limpiar el proyecto
-func clean() {
-	fmt.Println("Limpiando los binarios...")
-	os.RemoveAll(filepath.Join(BIN, BINARY_NAME))
-	runCommand("go", "clean", "./...")
+func Clean() {
+	println("Limpiando los binarios...")
+	sh.Run("go", "clean", BIN)
 }
 
 // Comprobar la sintaxis
-func check() {
-	fmt.Println("Comprobando sintaxis del proyecto...")
-	runCommand("gofmt", "-l", CODE_FOLDERS)
+func Check() {
+	internalPath := "./" + CODE_FOLDERS
+	println("Comprobando sintaxis del proyecto...")
+	sh.Run("gofmt", "-l", internalPath)
+	println("Check finalizado")
 }
 
+// Ejecutar pruebas
+func Test() {
+	internalPath := "./" + CODE_FOLDERS
+	println("Ejecutando pruebas...")
+	execCmd("go", "test", "-v", internalPath)
+	println("Pruebas finalizadas")
+}
 
+func execCmd(name string, args ...string) {
+	cmd := exec.Command(name, args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		println("Error executing command: %v\n", err)
+		os.Exit(1)
+	}
+}
