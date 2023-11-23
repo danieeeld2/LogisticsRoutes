@@ -58,5 +58,5 @@ docker build -t danieeeld2/logisticsroutes . & docker run -t -v `pwd`:/app/test 
 También, podemos usar la imagen que está en [DockerHub](https://hub.docker.com/r/danieeeld2/logisticsroutes)
 
 ```bash
-docker run -t -v `pwd`:/app/test danieeeld2/logisticsroutes
+docker run -t -v `pwd`:/app/test danieeeld2/logisticsroutes:latest
 ```
