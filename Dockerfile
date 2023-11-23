@@ -15,4 +15,4 @@ USER test
 
 COPY internal internal
 
-CMD ["go","test", "-v", "./internal"]
+ENTRYPOINT ["go","test", "-v", "./internal"]
