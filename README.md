@@ -52,7 +52,7 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 Se puede construir una imagen del contenedor y ejecutarla con
 
 ```bash
-docker build -t danieeeld2/logisticsroutes . & docker run -t -v `pwd`:/app/test danieeeld2/logisticsroutes
+docker build -t danieeeld2/logisticsroutes . && docker run -t -v `pwd`:/app/test danieeeld2/logisticsroutes
 ```
 
 También, podemos usar la imagen que está en [DockerHub](https://hub.docker.com/r/danieeeld2/logisticsroutes)
