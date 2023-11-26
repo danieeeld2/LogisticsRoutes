@@ -3,21 +3,21 @@ FROM golang:1.21-alpine3.17
 LABEL mantainer="danieeeld2@correo.ugr.es" \
       version="5.0.0"
 
-RUN addgroup -S testgroup && \
-    adduser -S -u 1001 test -G testgroup
+WORKDIR /app
 
-WORKDIR /user/test
-
-RUN apk update && \
-    apk add git && \
-    go install github.com/magefile/mage@v1.15.0 && \
-    chown -R test:testgroup /user/test
+RUN adduser -D -u 1001 test && \
+    chown test /app && \
+    apk add build-base
 
 USER test
 
 COPY go.mod go.sum magefile.go ./
-RUN mage installdeps
 
-COPY internal internal
+RUN go mod download && \
+    go install github.com/magefile/mage@v1.15.0 && \
+    mage -compile mageCompilado && \
+    rm go.sum magefile.go go.mod
 
-ENTRYPOINT ["mage", "test"]
+WORKDIR /app/test
+
+ENTRYPOINT [ "../mageCompilado", "test"]
