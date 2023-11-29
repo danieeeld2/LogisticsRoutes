@@ -1,0 +1,12 @@
+image: golang:1.21
+pipelines:
+  default:
+    - step:
+        name: Checkout and Test
+        script:
+          - apt-get update && apt-get install -y git
+          - git clone https://github.com/danieeeld2/LogisticsRoutes
+          - cd LogisticsRoutes
+          - go mod download
+          - go install github.com/magefile/mage@v1.15.0
+          - mage test
