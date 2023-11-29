@@ -6,9 +6,7 @@ jobs:
       - image: danieeeld2/logisticsroutes:latest
     steps:
       - checkout
-      - run: |
-          docker build -t danieeeld2/logisticroutes |
-          docker run -u 1001 -t -v `pwd`:/app/test danieeeld2/logisticroutes
+      - run: docker run -t -v $(pwd):/app/test danieeeld2/logisticsroutes:latest
 
 workflows:
   sample:
