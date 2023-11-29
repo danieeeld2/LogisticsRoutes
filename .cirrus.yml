@@ -1,0 +1,14 @@
+version: '1.0'
+
+tasks:
+  build-and-test:
+    container:
+      image: danieeeld2/logisticsroutes:latest
+    steps:
+      - checkout
+      - run: mage test
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
