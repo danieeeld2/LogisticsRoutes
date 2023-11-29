@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: danieeeld2/logisticsroutes:latest
+    steps:
+      - checkout
+      - run: mage test
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
