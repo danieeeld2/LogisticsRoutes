@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: danieeeld2/logisticsroutes:latest
+    steps:
+      - checkout
+      - run: |
+          docker build -t danieeeld2/logisticroutes |
+          docker run -u 1001 -t -v `pwd`:/app/test danieeeld2/logisticroutes
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
