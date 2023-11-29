@@ -6,7 +6,7 @@ jobs:
       - image: danieeeld2/logisticsroutes:latest
     steps:
       - checkout
-      - run: docker run -t -v $(pwd):/app/test danieeeld2/logisticsroutes:latest
+      - run: mage test
 
 workflows:
   sample:
