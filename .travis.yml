@@ -1,0 +1,28 @@
+language: go
+
+os: linux
+
+branches:
+  only:
+    - "*"
+
+go:
+  - "1.21" 
+
+install:
+  - go mod download
+  - go install github.com/magefile/mage@v1.15.0
+
+script:
+  - go mage test
+
+jobs:
+  include:
+    - name: "Tests"
+      if: type = pull_request
+      script:
+        - go mage test
+      env: TARGET=test
+
+notifications:
+  email: false
