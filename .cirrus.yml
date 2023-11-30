@@ -1,0 +1,4 @@
+container:
+  image: danieeeld2/logisticsroutes:latest
+test_task:
+  test_script: mage test
