@@ -42,6 +42,10 @@ De momento, hemos creado el pipeline, pero para que se pueda ejecutar de forma g
 
 He estado probando varias herramientas, pero solo he conseguido que me funcionen correctamente **Circle CI**, **Cirrus CI** y **Travis CI** (Se puede ver que hay varios PR cerrados de las herramientas. Esto se debe a que el ordenador me lleva fallando unos cuantos días y se me ha ido la pantalla un rato, e intentando arreglarlo he desconfigurado nastantes cosas, por lo que he eliminado las ramas y empezado el objetivo de nuevo). Entre estas tres, me voy a decantar por **Cirrus CI**, ya que los otros compañeros ya han elegido Circle y, de momento, parece que **Travis CI** no añade la funcionalidad
 
+### Versiones testadas
+
+Por un lado, en **Cirrus** testo las últimas versiones de Golang, que son la `1.20` y `1.21`, tal y como podemos ver en [versiones](https://go.dev/doc/devel/release). Por otro lado, en Github Actions hemos testado versiones más antiguas (he llegado a probar hata la versión `1.11`, tal y como se puede ver en el commit [b1678a3](https://github.com/danieeeld2/LogisticsRoutes/pull/63/commits/b1678a321d43c9132eac2c296dd8858bf8dfc795)), ya que mage tiene soporte de Go `1.7` en adelante, pero no tiene sentido testar versiones tan antiguas, cuando en la mayoría de criterios estamos diciendo que vamos a usar todas las herramientas más recientes, estables y con soporte.
+
 ### Comentario
 
 Además, he probado [CodeFresh](https://g.codefresh.io/) y [BitBucket](https://bitbucket.org/). Con el primero he tenido el problema de que me fallaba el build, y no he conseguido solucionarlo, y el segundo funciona, pero se integra directamente en un repositorio en BitBucket, que se conecta ("clona") nuestro git.
