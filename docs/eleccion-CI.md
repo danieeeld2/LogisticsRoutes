@@ -12,7 +12,7 @@
 
 Es una plataforma de código abierto que facilita la integración continua, así como el despliegue contínuo. Es altamente extensible mediante plugins y permite automatizar tareas mediante pipelines. Se puede configurar fácilmente con GitHub para que detecte automáticamente cambios en el repositorio y ejecute dichos pipelines. Además, es fácil de instalar y configurar mediante la interfaz web, siendo este servicio gratuito.
 
-He intentado probarlo, pero me dá problemas en la instalación.
+He intentado probarlo, pero me dá problemas en la instalación, posiblemente por algún error de Java/JDK de mi dispositivo.
 
 ### [Circle CI](https://circleci.com/)
 
@@ -23,6 +23,10 @@ Otra herramienta CI/CD que permite conectar GitHub. Esta herramienta permite la 
 Muy parecido a CircleCI, por no decir casi idénticos.
 
 Estos dos últimos permiten la instalación sobre el repositorio de GitHub, lo que lo hace muy cómodo.
+
+### [TravisCI](https://app.travis-ci.com/)
+
+Permite también la instalación sobre github. Además, permite testear varias versiones de una forma relativamente fácil. Probándolo, me he encontrado con el problema de que no permite testear `Go 1.21`, pero de la `1.20` hacia atrás si me permite. Podemos ver en este [enlace](https://travis-ci.community/t/go-version-as-environment-variable-stopped-working/2171/4) que se ha solicitado que añadan la versión `1.21`. Esta petición se añadió hace un mes y parece que todavía no se soluciona.
 
 ### [Semaphore](https://semaphoreci.com/)
 
@@ -36,8 +40,8 @@ De momento, hemos creado el pipeline, pero para que se pueda ejecutar de forma g
 
 ## Elección final
 
-He estado probando varias herramientas, pero solo he conseguido que me funcionen correctamente **Circle CI** y **Cirrus CI** (Se puede ver que hay varios PR cerrados de las herramientas. Esto se debe a que el ordenador me lleva fallando unos cuantos días y se me ha ido la pantalla un rato, e intentando arreglarlo he desconfigurado nastantes cosas, por lo que he eliminado las ramas y empezado el objetivo de nuevo). Entre estas dos, me voy a decantar por **Cirrus CI**, ya que los otros compañeros ya han elegido Circle, aunque son bastante parecidas y, de hecho, la integración es prácticamente la misma.
+He estado probando varias herramientas, pero solo he conseguido que me funcionen correctamente **Circle CI**, **Cirrus CI** y **Travis CI** (Se puede ver que hay varios PR cerrados de las herramientas. Esto se debe a que el ordenador me lleva fallando unos cuantos días y se me ha ido la pantalla un rato, e intentando arreglarlo he desconfigurado nastantes cosas, por lo que he eliminado las ramas y empezado el objetivo de nuevo). Entre estas tres, me voy a decantar por **Cirrus CI**, ya que los otros compañeros ya han elegido Circle y, de momento, parece que **Travis CI** no añade la funcionalidad
 
 ### Comentario
 
-He intentado también probar [TravisCI](https://app.travis-ci.com/), pero no me reconocía el fichero de configuración. Además, he probado [CodeFresh](https://g.codefresh.io/) y [BitBucket](https://bitbucket.org/). Con el primero he tenido el problema de que me fallaba el build, y no he conseguido solucionarlo, y el segundo funciona, pero se integra directamente en un repositorio en BitBucket, que se conecta ("clona") nuestro git.
+Además, he probado [CodeFresh](https://g.codefresh.io/) y [BitBucket](https://bitbucket.org/). Con el primero he tenido el problema de que me fallaba el build, y no he conseguido solucionarlo, y el segundo funciona, pero se integra directamente en un repositorio en BitBucket, que se conecta ("clona") nuestro git.
