@@ -1,0 +1,19 @@
+language: go
+
+go:
+  - "1.21"
+
+
+before_script:
+  - go mod download
+  - go install github.com/magefile/mage@v1.15.0
+
+script:
+  - mage test
+
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
