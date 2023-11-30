@@ -1,0 +1,23 @@
+name: Execute Tests
+on:
+  push:
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo-code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
+
+      -name: Intall dependencies
+       run: go mod download
+      
+      - name: Run tests
+        run: 'go test -v ./...'
+       
+```
