@@ -37,3 +37,7 @@ De momento, hemos creado el pipeline, pero para que se pueda ejecutar de forma g
 ## Elección final
 
 He estado probando varias herramientas, pero solo he conseguido que me funcionen correctamente **Circle CI** y **Cirrus CI** (Se puede ver que hay varios PR cerrados de las herramientas. Esto se debe a que el ordenador me lleva fallando unos cuantos días y se me ha ido la pantalla un rato, e intentando arreglarlo he desconfigurado nastantes cosas, por lo que he eliminado las ramas y empezado el objetivo de nuevo). Entre estas dos, me voy a decantar por **Cirrus CI**, ya que los otros compañeros ya han elegido Circle, aunque son bastante parecidas y, de hecho, la integración es prácticamente la misma.
+
+### Comentario
+
+He intentado también probar [TravisCI](https://app.travis-ci.com/), pero no me reconocía el fichero de configuración. Además, he probado [CodeFresh](https://g.codefresh.io/) y [BitBucket](https://bitbucket.org/). Con el primero he tenido el problema de que me fallaba el build, y no he conseguido solucionarlo, y el segundo funciona, pero se integra directamente en un repositorio en BitBucket, que se conecta ("clona") nuestro git.
