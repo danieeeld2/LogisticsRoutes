@@ -1,12 +1,15 @@
 name: Execute Tests
+
 on:
   push:
 
 jobs:
-  push_to_registry:
+  test:
     runs-on: ubuntu-latest
+
+    name: 'Go test'
     steps:
-      - name: Check out repo-code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Go
@@ -14,10 +17,7 @@ jobs:
         with:
           go-version: 1.21
 
-      -name: Intall dependencies
-       run: go mod download
-      
-      - name: Run tests
+      - name: Install dependencies 
+        run: go mod download
+      - name: Execute tests
         run: 'go test -v ./...'
-       
-```
