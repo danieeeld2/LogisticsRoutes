@@ -5,6 +5,6 @@ automatizar:
   orden: mage
 test: internal/planificacion_test.go
 
-CI:
+ci:
   - .github/workflows/test.yml
   - .cirrus.yml
