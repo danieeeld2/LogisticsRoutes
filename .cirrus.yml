@@ -1,0 +1,12 @@
+container:
+  image: danieeeld2/logisticsroutes:latest
+test_task:
+  matrix:
+    go_version:
+      - "1.21"
+      - "1.20"
+
+  test_script: |
+    export GIMME_GO_VERSION=$go_version
+    go mod download
+    mage test

@@ -4,3 +4,7 @@ automatizar:
   fichero: magefile.go
   orden: mage
 test: internal/planificacion_test.go
+
+CI:
+  - .github/workflows/test.yml
+  - .cirrus.yml
