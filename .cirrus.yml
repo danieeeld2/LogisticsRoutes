@@ -9,4 +9,5 @@ test_task:
   test_script: |
     export GIMME_GO_VERSION=$go_version
     go mod download
+    mage installdeps
     mage test
