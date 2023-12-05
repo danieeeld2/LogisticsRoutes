@@ -10,15 +10,27 @@ import (
 var logger *zerolog.Logger
 
 func initLogger() zerolog.Logger {
-	zerolog.TimeFieldFormat = time.RFC3339Nano
-	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout}
+	consoleWriter := zerolog.ConsoleWriter{Out: nil}
+	fileWriter := zerolog.ConsoleWriter{Out: nil}
 
-	logFile, err := os.OpenFile("../logisticsroutes.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	zerolog.TimeFieldFormat = time.RFC3339Nano
+
+	config, err := loadConfig("../koanf_config.yaml")
 	if err != nil {
-		defer logFile.Close()
 		panic(err)
 	}
-	fileWriter := zerolog.ConsoleWriter{Out: logFile, NoColor: true}
+
+	if (config.LogConfig.EnableConsole) {
+		consoleWriter = zerolog.ConsoleWriter{Out: os.Stdout}
+	}
+	if (config.LogConfig.EnableFile) {
+		logFile, err := os.OpenFile(config.LogConfig.LogFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		if err != nil {
+			defer logFile.Close()
+			panic(err)
+		}
+		fileWriter = zerolog.ConsoleWriter{Out: logFile, NoColor: true}
+	}
 
 	multi := zerolog.MultiLevelWriter(consoleWriter, fileWriter)
 	logger := zerolog.New(multi).
