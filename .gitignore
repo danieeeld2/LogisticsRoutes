@@ -19,6 +19,7 @@
 
 *.log
 *.env
+koanf_config.yaml
 
 # Go workspace file
 go.work
