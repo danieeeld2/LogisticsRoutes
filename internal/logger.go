@@ -7,18 +7,18 @@ import (
 	"time"
 )
 
-var logger *zerolog.Logger = nil
+var logger *zerolog.Logger
 
 func initLogger() zerolog.Logger {
 	zerolog.TimeFieldFormat = time.RFC3339Nano
 	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout}
 
-	logFile, err := os.OpenFile("logisticsroutes.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	logFile, err := os.OpenFile("../logisticsroutes.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
+		defer logFile.Close()
 		panic(err)
 	}
-	defer logFile.Close()
-	fileWriter := zerolog.ConsoleWriter{Out: logFile}
+	fileWriter := zerolog.ConsoleWriter{Out: logFile, NoColor: true}
 
 	multi := zerolog.MultiLevelWriter(consoleWriter, fileWriter)
 	logger := zerolog.New(multi).
@@ -36,7 +36,9 @@ func initLogger() zerolog.Logger {
 	
 func GetLogger() *zerolog.Logger {
 	if logger == nil {
-		*logger = initLogger()
+		var log = initLogger()
+		logger = &log
+		return &log
 	}
 	return logger
 }
