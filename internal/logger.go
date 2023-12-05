@@ -2,12 +2,15 @@ package internal
 
 import (
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 	"github.com/rs/zerolog/pkgerrors"
 	"os"
+	"time"
 )
 
+var logger *zerolog.Logger = nil
+
 func initLogger() zerolog.Logger {
+	zerolog.TimeFieldFormat = time.RFC3339Nano
 	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout}
 
 	logFile, err := os.OpenFile("logisticsroutes.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
@@ -21,7 +24,6 @@ func initLogger() zerolog.Logger {
 	logger := zerolog.New(multi).
 		With().
 		Timestamp().
-		.Str("format", "15:04:05 Jan 02").
 		Caller().
 		Logger()
 
@@ -32,6 +34,9 @@ func initLogger() zerolog.Logger {
 	return logger
 }
 	
-func (lw *LoggerWrapper) GetLogger() *zerolog.Logger {
-	return &lw.logger
+func GetLogger() *zerolog.Logger {
+	if logger == nil {
+		*logger = initLogger()
+	}
+	return logger
 }
