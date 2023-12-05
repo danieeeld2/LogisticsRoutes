@@ -36,4 +36,4 @@ Se trata de otra biblioteca de log estructurado para Go, que cuenta con ventajas
 
 ## Decisión final
 
-Para nuestro proyecto, las 3 opciones son válidas y sólidas. He tenido problemas intentando usar las dos librerías externas, debida a que `Go 1.21` es tan reciente que aún cuentan con varios fallos de incompatibilidades entre los paquetes que las componen, por lo que, por esta razón, y viendo la nueva funcionalidad que ha incluido la librería estándar, voy a probar a usar esta misma.
+Para nuestro proyecto, las 3 opciones son válidas y sólidas. Al principio he tenido bastantes problemas instalando las herramientas, debido a que Go `1.21` es muy reciente y, dependiendo de la versión que use, me da incompatibilidades en los paquetes. Trás un rato probando, he conseguido encontrar una versión de **Zerolog** que funciona correctamente en mi proyecto tanto en Go `1.20` como `1.21`. Probé también a usar `slog` y, a pesar de que mejora muchísimo respecto a versiones anteriores de la librería estándar, siento que aún se queda lejos de sus competidores comentados anteriormente.
