@@ -18,7 +18,7 @@ Es parte de la librería estándar de Go, por lo que tiene la ventaja de que sab
 - Salida del registro: Permite imprimir los registros por la salida estándar, establecer un fichero de salida o una conexión de red para enviar los registros a través de ella.
 - Prefixo de registro: Permite agregar un prefijo personalizado a los mensajes de registro, lo que es útil para identificar de qué parte de la aplicación provienen los registros.
 
-El formato de salida de la librería incluye la fecha-hora, nivel de registro y el mensaje de registro, pero no tiene la facilidad de cambiar el formato de salida.
+El formato de salida de la librería incluye la fecha-hora, nivel de registro y el mensaje de registro, pero no tiene la facilidad de cambiar el formato de salida. Esto, hasta la versión `1.20`, pero con la nueva versión `1.21`, incluye [StructuredLog](https://go.dev/blog/slog), que nos permite filtrar de formamás fácil y customizar más nuestros logs. Para añadirlo basta con `import "log/slog"` si estamos en una versión superior a la `1.21` o `go get golang.org/x/exp/slog` en versiones inferiores.
 
 ### [Logrus](https://pkg.go.dev/github.com/sirupsen/logrus)
 
@@ -36,4 +36,4 @@ Se trata de otra biblioteca de log estructurado para Go, que cuenta con ventajas
 
 ## Decisión final
 
-Para nuestro proyecto, las 3 opciones son válidas y sólidas. Voy a descartar la biblioteca estándar, porque me interesa tener un formato de salida más claro y personalizable para mi proyecto. Finalmente, entre **Logrus** y **Zerolog**, he decidido quedarme con **Zerolog** por que considero que es más fácil de configurar y la sintaxis es algo más simple, aunque cualquiera de las dos opciones hubiese sido válida.
+Para nuestro proyecto, las 3 opciones son válidas y sólidas. He tenido problemas intentando usar las dos librerías externas, debida a que `Go 1.21` es tan reciente que aún cuentan con varios fallos de incompatibilidades entre los paquetes que las componen, por lo que, por esta razón, y viendo la nueva funcionalidad que ha incluido la librería estándar, voy a probar a usar esta misma.
