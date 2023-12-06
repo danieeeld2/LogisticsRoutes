@@ -34,16 +34,14 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 	k := koanf.New(".")
 	if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
 		if err := k.Load(env.Provider("LogisticsRoutes_", ".", func(s string) string {
-			aux := strings.Replace(strings.ToLower(
+			return strings.Replace(strings.ToLower(
 				strings.TrimPrefix(s, "LogisticsRoutes_")), "_", ".", -1)
-			for key, value := range aux{
-				fmt.Printf("Clave: %d, Valor: %d\n", key, value)
-			} 
-			return aux
 		}), nil); err != nil {
 			return nil, err
 		}
 	}
+
+	k.Print()
 
 	var appConfig AppConfig
 	if err := k.Unmarshal("", &appConfig); err != nil {
