@@ -15,16 +15,16 @@ func initLogger() zerolog.Logger {
 
 	zerolog.TimeFieldFormat = time.RFC3339Nano
 
-	config, err := loadConfig("../koanf_config.yaml")
+	conf, err := loadConfig("../koanf_config.yaml")
 	if err != nil {
 		panic(err)
 	}
 
-	if (config.LogConfig.EnableConsole) {
+	if (conf.Log.Config.Enable.Console) {
 		consoleWriter = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
-	if (config.LogConfig.EnableFile) {
-		logFile, err := os.OpenFile(config.LogConfig.LogFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if (conf.Log.Config.Enable.File) {
+		logFile, err := os.OpenFile(conf.Log.Config.Logfile.Path, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 		if err != nil {
 			defer logFile.Close()
 			panic(err)

@@ -14,12 +14,19 @@ type AppConfig struct {
 		Debug bool `koanf:"debug"`
 	} `koanf:"app"`
 
-	LogConfig struct {
-		EnableConsole 	bool   `koanf:"enable_console"`
-		EnableFile    	bool   `koanf:"enable_file"`
-		EnableColor   	bool   `koanf:"enable_color"`
-		LogFilePath   	string `koanf:"log_file_path"`
-	} `koanf:"log_config"`
+	Log struct {
+		Config struct {
+			Enable struct {
+				Console bool `koanf:"console"`
+				File bool `koanf:"file"`
+				Color bool `koanf:"color"`
+			} `koanf:"enable"`
+			
+			Logfile struct {
+				Path string `koanf:"path"`
+			} `koanf:"logfile"`
+		} `koanf:"config"`
+	} `koanf:"log"`
 }
 
 func loadConfig(confiFile string) (*AppConfig, error) {
