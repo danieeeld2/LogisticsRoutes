@@ -20,4 +20,4 @@ RUN go mod download && \
 
 WORKDIR /app/test
 
-ENTRYPOINT [ "../mageCompilado", "installdeps", "&&", "../mageCompilado", "test"]
+ENTRYPOINT [ "../mageCompilado", "installdeps", "../mageCompilado", "test"]
