@@ -41,7 +41,7 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 		k.Set("app.Name", "LogisticsRoutes")
 		k.Set("app.Debug", false)
 		k.Set("log.config.enable.console", true)
-		k.Set("log.config.enable.file", true)
+		k.Set("log.config.enable.file", false)
 		k.Set("log.config.logfile.path", "../logisticsroutes.log")
 	}
 

@@ -32,12 +32,30 @@ func initLogger() zerolog.Logger {
 		fileWriter = zerolog.ConsoleWriter{Out: logFile, NoColor: true}
 	}
 
-	multi := zerolog.MultiLevelWriter(consoleWriter, fileWriter)
-	logger := zerolog.New(multi).
-		With().
-		Timestamp().
-		Caller().
-		Logger()
+	var logger zerolog.Logger
+	if (conf.Log.Config.Enable.Console && conf.Log.Config.Enable.File) {
+		multi := zerolog.MultiLevelWriter(consoleWriter, fileWriter)
+		logger = zerolog.New(multi).
+			With().
+			Timestamp().
+			Caller().
+			Logger()
+	}else{
+		if (conf.Log.Config.Enable.Console) {
+			logger = zerolog.New(consoleWriter).
+				With().
+				Timestamp().
+				Caller().
+				Logger()
+		}
+		if (conf.Log.Config.Enable.File) {
+			logger = zerolog.New(fileWriter).
+				With().
+				Timestamp().
+				Caller().
+				Logger()
+		}
+	}
 
 	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 
