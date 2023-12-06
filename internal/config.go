@@ -37,7 +37,7 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 			aux := strings.Replace(strings.ToLower(
 				strings.TrimPrefix(s, "LogisticsRoutes_")), "_", ".", -1)
 			for key, value := range aux{
-				fmt.Println("key:", key, "value:", value)
+				fmt.Printf("Clave: %s, Valor: %s\n", key, value)
 			} 
 			return aux
 		}), nil); err != nil {
