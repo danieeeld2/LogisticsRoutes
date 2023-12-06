@@ -4,6 +4,8 @@ import (
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/parsers/yaml"
+	"github.com/knadh/koanf/providers/env"
+	"strings"
 )
 
 type AppConfig struct {
@@ -23,7 +25,12 @@ type AppConfig struct {
 func loadConfig(confiFile string) (*AppConfig, error) {
 	k := koanf.New(".")
 	if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
-		return nil, err
+		if err := k.Load(env.Provider("LogisticsRoutes_", ".", func(s string) string {
+			return strings.Replace(strings.ToLower(
+				strings.TrimPrefix(s, "LogisticsRoutes_")), "_", ".", -1)
+		}), nil); err != nil {
+			return nil, err
+		}
 	}
 
 	var appConfig AppConfig
