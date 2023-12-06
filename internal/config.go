@@ -41,7 +41,7 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 		}
 	}
 
-	fmt.Println("name is = ", k.String("app.name"))
+	fmt.Println("name is = ", k)
 
 	var appConfig AppConfig
 	if err := k.Unmarshal("", &appConfig); err != nil {
