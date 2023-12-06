@@ -40,6 +40,8 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 		}
 	}
 
+	k.Print()
+
 	var appConfig AppConfig
 	if err := k.Unmarshal("", &appConfig); err != nil {
 		return nil, err
