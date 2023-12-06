@@ -5,7 +5,6 @@ import (
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/env"
-	"strings"
 )
 
 type AppConfig struct {
