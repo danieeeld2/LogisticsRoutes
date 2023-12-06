@@ -16,8 +16,9 @@ COPY go.mod go.sum magefile.go ./
 RUN go mod download && \
     go install github.com/magefile/mage@v1.15.0 && \
     mage -compile mageCompilado && \
+    go mod tidy && \
     rm go.sum magefile.go go.mod
 
 WORKDIR /app/test
 
-ENTRYPOINT [ "../mageCompilado", "installdeps", "../mageCompilado", "test"]
+ENTRYPOINT [ "../mageCompilado", "test"]
