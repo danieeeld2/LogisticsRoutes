@@ -45,8 +45,6 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 		k.Set("log.config.logfile.path", "../logisticsroutes.log")
 	}
 
-	k.Print()
-
 	var appConfig AppConfig
 	if err := k.Unmarshal("", &appConfig); err != nil {
 		return nil, err
