@@ -1,6 +1,8 @@
 container:
   image: danieeeld2/logisticsroutes:latest
 test_task:
+  environment:
+    name: LogisticsRoutes_
   matrix:
     go_version:
       - "1.21"
