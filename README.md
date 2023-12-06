@@ -32,6 +32,10 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 
 - [Elección de imágen](docs/seleccion-imagen.md)
 
+- [Sistema de Logs](docs/sistema-de-logs.md)
+
+- [Biblioteca de Configuración](docs/sistema-configuracion.md)
+
 ## Herramientas utilizadas
 
 - **Lenguaje de programación**: Go

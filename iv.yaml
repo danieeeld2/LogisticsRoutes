@@ -4,6 +4,7 @@ automatizar:
   fichero: magefile.go
   orden: mage
 test: internal/planificacion_test.go
+configuracion: koanf_config.yaml
 
 CI:
   - .github/workflows/test.yml
