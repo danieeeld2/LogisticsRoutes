@@ -6,7 +6,6 @@ import (
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/env"
 	"strings"
-	"fmt"
 )
 
 type AppConfig struct {
