@@ -4,10 +4,7 @@ import (
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/parsers/yaml"
-	// "github.com/knadh/koanf/providers/env"
-	"github.com/joho/godotenv"
-	"os"
-	"fmt"
+	"github.com/knadh/koanf/providers/env"
 )
 
 type AppConfig struct {
@@ -34,20 +31,11 @@ type AppConfig struct {
 func loadConfig(confiFile string) (*AppConfig, error) {
 	k := koanf.New(".")
 	if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
-		// if err := k.Load(env.Provider("LOGISTICSROUTES_", ".", func(s string) string {
-		// 	// Puedes personalizar la transformación de nombres de variables aquí si es necesario
-		// 	return s
-		// }), nil); err != nil {
-		// 	return nil, err
-		// }
-		if err := godotenv.Load(); err != nil {
+		if err := k.Load(env.Provider("LOGISTICSROUTES_", ".", func(s string) string {
+			// Puedes personalizar la transformación de nombres de variables aquí si es necesario
+			return s
+		}), nil); err != nil {
 			return nil, err
-		}
-		envVars := os.Environ()
-
-		// Imprimir todas las variables de entorno
-		for _, envVar := range envVars {
-			fmt.Println(envVar)
 		}
 	}
 
