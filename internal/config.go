@@ -6,6 +6,7 @@ import (
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/env"
 	"strings"
+	"fmt"
 )
 
 type AppConfig struct {
@@ -39,6 +40,8 @@ func loadConfig(confiFile string) (*AppConfig, error) {
 			return nil, err
 		}
 	}
+
+	fmt.Println("name is = ", k.String("app.name"))
 
 	var appConfig AppConfig
 	if err := k.Unmarshal("", &appConfig); err != nil {
