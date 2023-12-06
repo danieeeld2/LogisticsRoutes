@@ -4,8 +4,10 @@ import (
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/parsers/yaml"
-	"github.com/knadh/koanf/providers/env"
 )
+
+var useConfigFile = false
+var defaultConfig = true
 
 type AppConfig struct {
 	App struct {
@@ -30,13 +32,17 @@ type AppConfig struct {
 
 func loadConfig(confiFile string) (*AppConfig, error) {
 	k := koanf.New(".")
-	if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
-		if err := k.Load(env.Provider("", ".", func(s string) string {
-			// Puedes personalizar la transformación de nombres de variables aquí si es necesario
-			return s
-		}), nil); err != nil {
+	if(useConfigFile){
+		if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
 			return nil, err
 		}
+	}
+	if(defaultConfig){
+		k.Set("app.Name", "LogisticsRoutes")
+		k.Set("app.Debug", false)
+		k.Set("log.config.enable.console", true)
+		k.Set("log.config.enable.file", true)
+		k.Set("log.config.logfile.path", "../logisticsroutes.log")
 	}
 
 	k.Print()

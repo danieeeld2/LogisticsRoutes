@@ -50,7 +50,6 @@ func GetLogger() *zerolog.Logger {
 	if logger == nil {
 		var log = initLogger()
 		logger = &log
-		return &log
 	}
 	return logger
 }
