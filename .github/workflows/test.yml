@@ -6,7 +6,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: LogisticsRoutes_
     strategy:
       matrix:
         go-version: ['1.20', '1.21']
