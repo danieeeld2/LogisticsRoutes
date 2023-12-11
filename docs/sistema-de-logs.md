@@ -4,9 +4,9 @@
 
 Los criterios que tendremos en cuenta para elegir una biblioteca de logs son:
 
-- Soporte continuado en el tiempo
-- Posibilidad de especificar distintos niveles de impresión: logs, debug, warning, error...
+- Posibilidad de personalizar la salida: Modificar formato de la fecha, posibilidad de añadir desde que fichero se invoca el log (información contextual)...
 - Posibilidad de imprimir/almacenar los logs en diferentes ubicaciones: consola, ficheros locales, ficheros en un servidor remoto...
+- Compatibilidad y salud de los paquetes
 
 ## Opciones Estudiadas
 
@@ -16,7 +16,7 @@ Es parte de la librería estándar de Go, por lo que tiene la ventaja de que sab
 
 - Nivel de registro: Permite establecer los distintos niveles de impresión, comentados anteriormente en los criterios (información, error, ...)
 - Salida del registro: Permite imprimir los registros por la salida estándar, establecer un fichero de salida o una conexión de red para enviar los registros a través de ella.
-- Prefixo de registro: Permite agregar un prefijo personalizado a los mensajes de registro, lo que es útil para identificar de qué parte de la aplicación provienen los registros.
+- Prefijo de registro: Permite agregar un prefijo personalizado a los mensajes de registro, lo que es útil para identificar de qué parte de la aplicación provienen los registros.
 
 El formato de salida de la librería incluye la fecha-hora, nivel de registro y el mensaje de registro, pero no tiene la facilidad de cambiar el formato de salida. Esto, hasta la versión `1.20`, pero con la nueva versión `1.21`, incluye [StructuredLog](https://go.dev/blog/slog), que nos permite filtrar de formamás fácil y customizar más nuestros logs. Para añadirlo basta con `import "log/slog"` si estamos en una versión superior a la `1.21` o `go get golang.org/x/exp/slog` en versiones inferiores.
 
@@ -24,8 +24,6 @@ El formato de salida de la librería incluye la fecha-hora, nivel de registro y 
 
 Se trata de una biblioteca de log estructurado para Go, que ofrece varias ventajas. Alguna de las que me han parecido más interesantes son las siguientes:
 
-- Permite asociar clave-valor a los mensajes de log, facilitando en análisis y filtrado de los mismos.
-- Admite diferentes niveles de log.
 - Tiene una gran flexibilidad en el formato de salida, pudiendo elegir texto plano, JSON, ...
 - Cuenta con gestión de hooks, permitiendo enviar los logs a varios destinos.
 - Es compatible con el paquete `context` de Go, lo que permite proporcionar información contextual a través de las llamadas de funciones y asociarla con los logs generados.
