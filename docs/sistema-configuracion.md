@@ -9,6 +9,7 @@ Los criterios que vamos a tener en cuenta para realizar la elección sobre la bi
 - Soporte y seguridad de la biblioteca.
 - Que nos permita manejar más de una configuración (Así podemos crear una configuración estándar para los tests y visible en git y otras privadas)
 - Entensibilidad
+- Salud de los paquetes, la cuál, servá verificada usando [Snyk.io](https://snyk.io/)
 
 
 **Nota de procedimiento al diseñar la configuración**: Al utilizar bibliotecas de configuración, nos aseguramos de que la configuración esta separada del resto del código, pudiendo modificarse fácilmente, sin necesidad de cambiar todo el código.
