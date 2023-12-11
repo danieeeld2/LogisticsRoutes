@@ -1,8 +1,17 @@
 # Sistema de Configuración
 
-Son herramientas que permiten almacenar y acceder a diferentes configuraciones de una aplicación de forma organizada y segura. Estas configuraciones pueden incluir valores como la dirección de un servidos, opciones de aplicación, credenciales...
+## Criterios
 
-Al utilizar bibliotecas de configuración, nos aseguramos de que la configuración esta separada del resto delcódigo, pudiendo modificarse fácilmente, sin necesidad de cambiar todo el código.
+Los criterios que vamos a tener en cuenta para realizar la elección sobre la biblioteca de configuración son los siguientes:
+
+- Facilidad de uso y legibilidad
+- Formato de la configuración. Las bibliotecas pueden admitir diferentes formatos de configuración, como `JSON`, `YAML`... En mi caso, opto por usar bibliotecas que admitan formato `YAML`, por su facilidad y legibilidad (como detallo en el punto anterior).
+- Soporte y seguridad de la biblioteca.
+- Que nos permita manejar más de una configuración (Así podemos crear una configuración estándar para los tests y visible en git y otras privadas)
+- Entensibilidad
+
+
+**Nota de procedimiento al diseñar la configuración**: Al utilizar bibliotecas de configuración, nos aseguramos de que la configuración esta separada del resto del código, pudiendo modificarse fácilmente, sin necesidad de cambiar todo el código.
 
 ## Opciones Estudiadas
 
