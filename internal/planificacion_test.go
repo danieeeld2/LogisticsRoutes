@@ -84,11 +84,14 @@ var camionesPrueba = []Camion{
 }
 
 func TestPlanificacion(t *testing.T) {
+	logger := GetLogger()
+	logger.Info().Msg("Comenzando test de planificacion")
 	t.Log("Comenzando test de planificacion")
 
 	camionesDisponibles := []Camion{}
 	CamionesAsignados := []Camion{}
 	suministro := NuevoSuministro("Calle Falsa 123", 10, 100, 1000, TipoSuministro(NORMAL))
+	logger.Info().Msg("Creado suministro de prueba")
 
 	t.Log("No hay camiones disponibles ni asignados")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -97,6 +100,7 @@ func TestPlanificacion(t *testing.T) {
 	}
 
 	camionesDisponibles = append(camionesDisponibles, camionesPrueba...)
+	logger.Info().Msg("Camiones de pruebas creados")
 	CamionesAsignados = []Camion{}
 	t.Log("Hay varios camiones disponibles que pueden transportar el vehículo")
 	AsigarCamiones(&camionesDisponibles, suministro, &CamionesAsignados)
@@ -127,5 +131,7 @@ func TestPlanificacion(t *testing.T) {
 	if !ComprobarAsignacionOptima(camionesDisponibles, suministro, CamionesAsignados) {
 		t.Error("La asignacion no es optima")
 	}
+
+	logger.Info().Msg("Finalizando test de planificacion")
 }
 

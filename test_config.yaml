@@ -1,0 +1,11 @@
+app:
+  name: "Test"
+  debug: true
+log:
+  config:
+    enable:
+      console: true
+      color: false
+      file: true
+    logfile:
+      path: "../test.log"

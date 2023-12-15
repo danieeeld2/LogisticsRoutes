@@ -11,6 +11,7 @@ type Suministro struct {
 }
 
 func NuevoSuministro(direccion string, tiempo time.Duration, peso_kg float32, volumen float32, tipo TipoSuministro) Suministro {
+	GetLogger().Info().Msg("Creando suministro de prueba")
 	return Suministro{
 		direccion:           direccion,
 		tiempo:              tiempo,

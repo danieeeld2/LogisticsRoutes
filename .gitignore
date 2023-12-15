@@ -17,5 +17,9 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+*.log
+*.env
+koanf_config.yaml
+
 # Go workspace file
 go.work
