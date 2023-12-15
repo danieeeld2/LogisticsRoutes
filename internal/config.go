@@ -33,7 +33,7 @@ type AppConfig struct {
 func loadConfig(configFile string) (*AppConfig, error) {
 	k := koanf.New(".")
 	if(useConfigFile){
-		if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
+		if err := k.Load(file.Provider(configFile), yaml.Parser()); err != nil {
 			return nil, err
 		}
 	}
