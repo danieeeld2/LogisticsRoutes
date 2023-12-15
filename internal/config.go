@@ -30,7 +30,7 @@ type AppConfig struct {
 	} `koanf:"log"`
 }
 
-func loadConfig(confiFile string) (*AppConfig, error) {
+func loadConfig(configFile string) (*AppConfig, error) {
 	k := koanf.New(".")
 	if(useConfigFile){
 		if err := k.Load(file.Provider(confiFile), yaml.Parser()); err != nil {
