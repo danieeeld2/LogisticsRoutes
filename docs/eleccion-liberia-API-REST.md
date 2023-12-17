@@ -39,3 +39,6 @@ Es una opción más potente, que permite configuraciones avanzadas de rutas mas 
 
 Es una de las que más curiosas me han parecido. Cuenta con diseño MVC integrado, Hot Code Reload, gestión integrada de dependencias..., pero, nuevamente, incluye mucho más de lo que requerimos, así que la descartamos.
 
+## Decisión final
+
+De las opciones que hemos decidido no descartar, que son `Gin`, `Chi` y `net/http`; he decidido quedarme con `Chi`. Todas son opciones válidas y adaptadas a nuestros criterios. He decidido quedarme con esta porque `net/hhtp` ya la ha elegido un compañero y, a parte, `Chi` se integra bien con esta, así que la estamos usando de forma indirecta. Por otro lado, entre `Gin` y `Chi`, tenía mejores compatibilidades y salud de los paquetes con `Chi`.
