@@ -9,3 +9,5 @@ configuracion: koanf_config.yaml
 CI:
   - .github/workflows/test.yml
   - .cirrus.yml
+framework:
+  - chi
