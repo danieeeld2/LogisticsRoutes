@@ -88,8 +88,8 @@ func getSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
 	return Asignacion{}, false
 }
 
-get postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (Asignacion, bool) {
-	for i, Asignacion := range bd.asignaciones {
+func postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (Asignacion, bool) {
+	for _, Asignacion := range bd.asignaciones {
 		if Asignacion.idsuministro == id {
 			return Asignacion, false
 		}
