@@ -5,6 +5,7 @@ import (
 )
 
 func TestBD(t *testing.T) {
+	resetearBD()
 	bd := getBDPrueba()
 
 	camion, _ := getCamionMatricula("AAAAAA", bd)

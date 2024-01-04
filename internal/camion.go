@@ -1,9 +1,10 @@
 package internal
 
+
 type Camion struct {
-	tipo      				TipoSuministro
-	volumen_cm3				float32
-	mma       				uint
+	tipo      				TipoSuministro 	`json:"tipo"`
+	volumen_cm3				float32 	  	`json:"volumen_cm3"`
+	mma       				uint 			`json:"mma"`
 }
 
 func NewCamion(tipo TipoSuministro, volumen float32, mma uint) Camion {
