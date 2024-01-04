@@ -94,6 +94,7 @@ func postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (
 			return Asignacion, false
 		}
 	}
+	
 	bd.asignaciones = append(bd.asignaciones, Asignacion{matriculasCamiones, id})
 	return Asignacion{matriculasCamiones, id}, true
 }
