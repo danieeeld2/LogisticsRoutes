@@ -3,6 +3,7 @@ package internal
 import (
 	"net/http"
 	"github.com/go-chi/chi/v5"
+	"encoding/json"
 )
 
 var router *chi.Mux
@@ -23,8 +24,28 @@ func createRouter() *chi.Mux{
 	return router
 }
 
-func getCamiom(w http.ResponseWriter, r *http.Request) {
+// Aquí leería del fichero de configuración una conexión a la base de datos
+// Creamos una de prueba
 
+var bd BD = getBDPrueba()
+
+func getCamiom(w http.ResponseWriter, r *http.Request) {
+	matricula := chi.URLParam(r, "matricula")
+	camion, ok := getCamionMatricula(matricula, bd)
+
+	if !ok {
+		http.Error(w, "Camion no encontrado", http.StatusNotFound)
+		return
+	}
+
+	jsonResponse, err := json.Marshal(camion)
+	if err != nil {
+		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonResponse)
 }
 
 func putCamion(w http.ResponseWriter, r *http.Request) {
