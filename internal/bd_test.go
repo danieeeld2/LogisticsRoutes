@@ -32,7 +32,7 @@ func TestBD(t *testing.T) {
 		t.Error("Camion encontrado y no existe")
 	}
 	camion, _ = putCamionMatricula("1234ABD", Camion{}, bd)
-	if camion != (CamionMatricula{camion: Camion{}, matricula: "1234ABD"}) {
+	if camion != (CamionMatricula{Camion: Camion{}, Matricula: "1234ABD"}) {
 		t.Error("Camion no actualizado")
 	}
 	suministro, _ := getSuministroID("AAAAAA", bd)
@@ -60,11 +60,11 @@ func TestBD(t *testing.T) {
 		t.Error("Suministro encontrado y no existe")
 	}
 	suministro, _ = putSuministroID("2", Suministro{}, bd)
-	if suministro != (SuministroID{suministro: Suministro{}, id: "2"}) {
+	if suministro != (SuministroID{Suministro: Suministro{}, ID: "2"}) {
 		t.Error("Suministro no actualizado")
 	}
 	asignacion, _ := postSuministroIDAsignacion("2", []string{"1234ABD"}, bd)
-	if asignacion.idsuministro != "2" && asignacion.matriculasCamiones[0] != "1234ABD" {
+	if asignacion.IDSuministro != "2" && asignacion.MatriculasCamiones[0] != "1234ABD" {
 		t.Error("Asignacion no actualizado")
 	}
 	_, status := getSuministroIDAsignacion("AAAAAA", bd)
@@ -75,7 +75,7 @@ func TestBD(t *testing.T) {
 	if status != true {
 		t.Error("Asignacion no encontrado y existe")
 	}
-	if asignacion.idsuministro != "3" && asignacion.matriculasCamiones[0] != "1234ABF" {
+	if asignacion.IDSuministro != "3" && asignacion.MatriculasCamiones[0] != "1234ABF" {
 		t.Error("Asignacion no encontrado correctamente")
 	}
 }

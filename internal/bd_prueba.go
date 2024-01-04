@@ -1,42 +1,42 @@
 package internal
 
 var bd_prueba BD = BD{
-	camiones: []CamionMatricula{
+	Camiones: []CamionMatricula{
 		{
-			camion: NewCamion(TipoSuministro(NORMAL), 1000, 100),
-			matricula: "1234ABC",
+			Camion: NewCamion(TipoSuministro(NORMAL), 1000, 100),
+			Matricula: "1234ABC",
 		},
 		{
-			camion: NewCamion(TipoSuministro(QUIMICO), 1000000, 100),
-			matricula: "1234ABD",
+			Camion: NewCamion(TipoSuministro(QUIMICO), 1000000, 100),
+			Matricula: "1234ABD",
 		},
 		{
-			camion: NewCamion(TipoSuministro(NORMAL), 1000000, 100),
-			matricula: "1234ABE",
+			Camion: NewCamion(TipoSuministro(NORMAL), 1000000, 100),
+			Matricula: "1234ABE",
 		},
 		{
-			camion: NewCamion(TipoSuministro(NORMAL), 1000000, 1000),
-			matricula: "1234ABF",
-		},
-	},
-	suministros: []SuministroID{
-		{
-			suministro: NuevoSuministro("Calle Falsa 123", 10, 100, 1000, TipoSuministro(NORMAL)),
-			id: "1",
-		},
-		{
-			suministro: NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(NORMAL)),
-			id: "2",
-		},
-		{
-			suministro: NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(QUIMICO)),
-			id: "3",
+			Camion: NewCamion(TipoSuministro(NORMAL), 1000000, 1000),
+			Matricula: "1234ABF",
 		},
 	},
-	asignaciones: []Asignacion{
+	Suministros: []SuministroID{
 		{
-			matriculasCamiones: []string{"1234ABF"},
-			idsuministro: "3",
+			Suministro: NuevoSuministro("Calle Falsa 123", 10, 100, 1000, TipoSuministro(NORMAL)),
+			ID: "1",
+		},
+		{
+			Suministro: NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(NORMAL)),
+			ID: "2",
+		},
+		{
+			Suministro: NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(QUIMICO)),
+			ID: "3",
+		},
+	},
+	Asignaciones: []Asignacion{
+		{
+			MatriculasCamiones: []string{"1234ABF"},
+			IDSuministro: "3",
 		},
 	},			
 }

@@ -1,29 +1,29 @@
 package internal
 
 type CamionMatricula struct {
-	camion Camion
-	matricula string
+	Camion    Camion `json:"camion"`
+	Matricula string `json:"matricula"`
 }
 
 type SuministroID struct {
-	suministro Suministro
-	id string
+	Suministro Suministro `json:"suministro"`
+	ID         string     `json:"id"`
 }
 
 type Asignacion struct {
-	matriculasCamiones []string
-	idsuministro string
+	MatriculasCamiones []string `json:"matriculasCamiones"`
+	IDSuministro       string   `json:"idSuministro"`
 }
 
 type BD struct {
-	camiones []CamionMatricula
-	suministros []SuministroID
-	asignaciones []Asignacion
+	Camiones     []CamionMatricula `json:"camiones"`
+	Suministros  []SuministroID    `json:"suministros"`
+	Asignaciones []Asignacion      `json:"asignaciones"`
 }
 
 func getCamionMatricula(matricula string, bd BD) (CamionMatricula, bool) {
-	for _, CamionMatricula := range bd.camiones {
-		if CamionMatricula.matricula == matricula {
+	for _, CamionMatricula := range bd.Camiones {
+		if CamionMatricula.Matricula == matricula {
 			return CamionMatricula, true
 		}
 	}
@@ -31,8 +31,8 @@ func getCamionMatricula(matricula string, bd BD) (CamionMatricula, bool) {
 }
 
 func getSuministroID(id string, bd BD) (SuministroID, bool) {
-	for _, SuministroID := range bd.suministros {
-		if SuministroID.id == id {
+	for _, SuministroID := range bd.Suministros {
+		if SuministroID.ID == id {
 			return SuministroID, true
 		}
 	}
@@ -40,9 +40,9 @@ func getSuministroID(id string, bd BD) (SuministroID, bool) {
 }
 
 func deleteCamionMatricula(matricula string, bd BD) (CamionMatricula, bool) {
-	for i, CamionMatricula := range bd.camiones {
-		if CamionMatricula.matricula == matricula {
-			bd.camiones = append(bd.camiones[:i], bd.camiones[i+1:]...)
+	for i, CamionMatricula := range bd.Camiones {
+		if CamionMatricula.Matricula == matricula {
+			bd.Camiones = append(bd.Camiones[:i], bd.Camiones[i+1:]...)
 			return CamionMatricula, true
 		}
 	}
@@ -50,9 +50,9 @@ func deleteCamionMatricula(matricula string, bd BD) (CamionMatricula, bool) {
 }
 
 func deleteSuministroID(id string, bd BD) (SuministroID, bool) {
-	for i, SuministroID := range bd.suministros {
-		if SuministroID.id == id {
-			bd.suministros = append(bd.suministros[:i], bd.suministros[i+1:]...)
+	for i, SuministroID := range bd.Suministros {
+		if SuministroID.ID == id {
+			bd.Suministros = append(bd.Suministros[:i], bd.Suministros[i+1:]...)
 			return SuministroID, true
 		}
 	}
@@ -60,28 +60,28 @@ func deleteSuministroID(id string, bd BD) (SuministroID, bool) {
 }
 
 func putCamionMatricula(matricula string, NuevoCamion Camion, bd BD) (CamionMatricula, bool) {
-	for i, CamionMatricula := range bd.camiones {
-		if CamionMatricula.matricula == matricula {
-			bd.camiones[i].camion = NuevoCamion
-			return bd.camiones[i], true
+	for i, CamionMatricula := range bd.Camiones {
+		if CamionMatricula.Matricula == matricula {
+			bd.Camiones[i].Camion = NuevoCamion
+			return bd.Camiones[i], true
 		}
 	}
 	return CamionMatricula{}, false
 }
 
 func putSuministroID(id string, NuevoSuministro Suministro, bd BD) (SuministroID, bool) {
-	for i, SuministroID := range bd.suministros {
-		if SuministroID.id == id {
-			bd.suministros[i].suministro = NuevoSuministro
-			return bd.suministros[i], true
+	for i, SuministroID := range bd.Suministros {
+		if SuministroID.ID == id {
+			bd.Suministros[i].Suministro = NuevoSuministro
+			return bd.Suministros[i], true
 		}
 	}
 	return SuministroID{}, false
 }
 
 func getSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
-	for _, Asignacion := range bd.asignaciones {
-		if Asignacion.idsuministro == id {
+	for _, Asignacion := range bd.Asignaciones {
+		if Asignacion.IDSuministro == id {
 			return Asignacion, true
 		}
 	}
@@ -89,13 +89,13 @@ func getSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
 }
 
 func postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (Asignacion, bool) {
-	for _, Asignacion := range bd.asignaciones {
-		if Asignacion.idsuministro == id {
+	for _, Asignacion := range bd.Asignaciones {
+		if Asignacion.IDSuministro == id {
 			return Asignacion, false
 		}
 	}
 
-	bd.asignaciones = append(bd.asignaciones, Asignacion{matriculasCamiones, id})
+	bd.Asignaciones = append(bd.Asignaciones, Asignacion{matriculasCamiones, id})
 	return Asignacion{matriculasCamiones, id}, true
 }
 
