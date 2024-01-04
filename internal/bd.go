@@ -10,9 +10,15 @@ type SuministroID struct {
 	id string
 }
 
+type Asignacion struct {
+	matriculasCamiones string[]
+	idsuministro string
+}
+
 type BD struct {
 	camiones []CamionMatricula
 	suministros []SuministroID
+	asignaciones []Asignacion
 }
 
 func getCamionMatricula(matricula string, bd BD) (CamionMatricula, bool) {
@@ -71,6 +77,25 @@ func putSuministroID(NuevoSuministroID SuministroID, bd BD) (SuministroID, bool)
 		}
 	}
 	return SuministroID{}, false
+}
+
+func getSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
+	for _, Asignacion := range bd.asignaciones {
+		if Asignacion.idsuministro == id {
+			return Asignacion, true
+		}
+	}
+	return Asignacion{}, false
+}
+
+get postSuministroIDAsignacion(id string, matriculasCamiones string[], bd BD) (Asignacion, bool) {
+	for i, Asignacion := range bd.asignaciones {
+		if Asignacion.idsuministro == id {
+			return Asignacion, false
+		}
+	}
+	bd.asignaciones = append(bd.asignaciones, Asignacion{matriculasCamiones, id})
+	return Asignacion{matriculasCamiones, id}, true
 }
 
 

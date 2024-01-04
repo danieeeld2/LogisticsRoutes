@@ -13,8 +13,8 @@ func createRouter() *chi.Mux{
 		router.Get("/camion/{matricula}", getCamiom)
 		router.Put("/camion/{matricula}", putCamion)
 		router.Delete("/camion/{matricula}", deleteCamion)
-		router.Get("/camion/{matricula}/asignacion", getAsignacion)
-		router.Put("/camion/{matricula}/asignacion", putAsignacion)
+		router.Get("/suministro/{id}/asignacion", getAsignacion)
+		router.Post("/suministro/{id}/asignacion", postAsignacion)
 		router.Get("/suministro/{id}", getSuministro)
 		router.Put("/suministro/{id}", putSuministro)
 		router.Delete("/suministro/{id}", deleteSuministro)
@@ -39,7 +39,7 @@ func getAsignacion(w http.ResponseWriter, r *http.Request) {
 	
 }
 
-func putAsignacion(w http.ResponseWriter, r *http.Request) {
+func postAsignacion(w http.ResponseWriter, r *http.Request) {
 	
 }
 

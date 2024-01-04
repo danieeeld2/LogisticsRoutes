@@ -7,7 +7,7 @@ import (
 type Planificacion struct {
 	camiones		[]Camion
 	suministros 	[]Suministro
-	asignacion		map[Camion][]Suministro
+	asignacion		map[Suministro][]Camion
 }
 
 func EliminarElemento(slice []Camion, indice int) []Camion {
