@@ -33,7 +33,12 @@ var bd_prueba BD = BD{
 			id: "3",
 		},
 	},
-	asignaciones: []Asignacion{},
+	asignaciones: []Asignacion{
+		{
+			matriculasCamiones: []string{"1234ABF"},
+			idsuministro: "3",
+		},
+	},			
 }
 
 func getBDPrueba() BD{
