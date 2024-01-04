@@ -32,7 +32,7 @@ func Build() error {
 }
 
 // Instalación de las dependencias
-func Installdeps() {
+func Install() {
 	println("Instalando las dependencias...")
 	sh.Run("go", "mod", "tidy")
 	println("Instalación de dependencias finalizada")
