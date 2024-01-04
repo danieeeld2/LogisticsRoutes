@@ -59,21 +59,21 @@ func deleteSuministroID(id string, bd BD) (SuministroID, bool) {
 	return SuministroID{}, false
 }
 
-func putCamionMatricula(NuevoCamionMatricula CamionMatricula, bd BD) (CamionMatricula, bool) {
+func putCamionMatricula(matricula string, NuevoCamion Camion, bd BD) (CamionMatricula, bool) {
 	for i, CamionMatricula := range bd.camiones {
-		if CamionMatricula.matricula == NuevoCamionMatricula.matricula {
-			bd.camiones[i] = NuevoCamionMatricula
-			return NuevoCamionMatricula, true
+		if CamionMatricula.matricula == matricula {
+			bd.camiones[i].camion = NuevoCamion
+			return bd.camiones[i], true
 		}
 	}
 	return CamionMatricula{}, false
 }
 
-func putSuministroID(NuevoSuministroID SuministroID, bd BD) (SuministroID, bool) {
+func putSuministroID(id string, NuevoSuministro Suministro, bd BD) (SuministroID, bool) {
 	for i, SuministroID := range bd.suministros {
-		if SuministroID.id == NuevoSuministroID.id {
-			bd.suministros[i] = NuevoSuministroID
-			return NuevoSuministroID, true
+		if SuministroID.id == id {
+			bd.suministros[i].suministro = NuevoSuministro
+			return bd.suministros[i], true
 		}
 	}
 	return SuministroID{}, false
@@ -94,7 +94,7 @@ func postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (
 			return Asignacion, false
 		}
 	}
-	
+
 	bd.asignaciones = append(bd.asignaciones, Asignacion{matriculasCamiones, id})
 	return Asignacion{matriculasCamiones, id}, true
 }
