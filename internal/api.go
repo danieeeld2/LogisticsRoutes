@@ -35,7 +35,7 @@ func getCamiom(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(camion)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -61,7 +61,7 @@ func putCamion(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(camionActualizado)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -80,7 +80,7 @@ func deleteCamion(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(camion)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -99,7 +99,7 @@ func getAsignacion(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(asignacion)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -118,7 +118,7 @@ func postAsignacion(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(asignacionCreada)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -137,7 +137,7 @@ func getSuministro(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(suministro)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -163,7 +163,7 @@ func putSuministro(w http.ResponseWriter, r *http.Request) {
 
 	jsonResponse, err := json.Marshal(suministroActualizado)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
@@ -182,7 +182,7 @@ func deleteSuministro(w http.ResponseWriter, r *http.Request) {
 	
 	jsonResponse, err := json.Marshal(suministro)
 	if err != nil {
-		http.Error(w, "Error al convertir a JSON", http.StatusInternalServerError)
+		http.Error(w, "Error al convertir a JSON", http.StatusBadRequest)
 		return
 	}
 
