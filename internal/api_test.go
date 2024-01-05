@@ -207,27 +207,19 @@ func TestAPI(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer resp.Body.Close()
+	
 
 	if resp.StatusCode == http.StatusOK {
 		t.Errorf("Esperado status 400, pero obtuve %d", resp.StatusCode)
 	}
 
+	resetearBD()
 	ID = "2"
 	url = server.URL + "/suministro/" + ID + "/asignacion"
-
-	asignacionData := []string{"1234ABD"}
-
-	jsonData, err := json.Marshal(asignacionData)
+	req, err = http.NewRequest("POST", url, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	req, err = http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	req.Header.Set("Content-Type", "application/json")
 
 	resp, err = http.DefaultClient.Do(req)
 	if err != nil {
@@ -247,7 +239,7 @@ func TestAPI(t *testing.T) {
 	matricula = "AAAAAA"
 	url = server.URL + "/camion/" + matricula
 	
-	jsonData, err = json.Marshal(camionData)
+	jsonData, err := json.Marshal(camionData)
 	if err != nil {
 		t.Fatal(err)
 	}

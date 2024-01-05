@@ -32,7 +32,7 @@ func resetearBD() {
 				ID: "1",
 			},
 			{
-				Suministro: NuevoSuministro("Calle Falsa 123", 10, 10000, 1000000000, TipoSuministro(NORMAL)),
+				Suministro: NuevoSuministro("Calle Falsa 123", 10, 10, 10, TipoSuministro(NORMAL)),
 				ID: "2",
 			},
 			{

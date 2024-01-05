@@ -110,14 +110,7 @@ func getAsignacion(w http.ResponseWriter, r *http.Request) {
 func postAsignacion(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	var nuevaAsignacion []string
-	err := json.NewDecoder(r.Body).Decode(&nuevaAsignacion)
-	if err != nil {
-		http.Error(w, "Error al leer el body", http.StatusBadRequest)
-		return
-	}
-
-	asignacionCreada, ok := postSuministroIDAsignacion(id, nuevaAsignacion, getBDPrueba())
+	asignacionCreada, ok := postSuministroIDAsignacion(id, getBDPrueba())
 	if !ok {
 		http.Error(w, "Asignacion no creada", http.StatusNotFound)
 		return

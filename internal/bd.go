@@ -88,15 +88,39 @@ func getSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
 	return Asignacion{}, false
 }
 
-func postSuministroIDAsignacion(id string, matriculasCamiones []string, bd BD) (Asignacion, bool) {
+func postSuministroIDAsignacion(id string, bd BD) (Asignacion, bool) {
 	for _, Asignacion := range bd.Asignaciones {
 		if Asignacion.IDSuministro == id {
 			return Asignacion, false
 		}
 	}
 
-	bd.Asignaciones = append(bd.Asignaciones, Asignacion{matriculasCamiones, id})
-	return Asignacion{matriculasCamiones, id}, true
+	camionesAsignados := []Camion{}
+	camionesDisponibles := []Camion{}
+	suministro := SuministroID{}
+	for _, SuministroID := range bd.Suministros {
+		if SuministroID.ID == id {
+			suministro = SuministroID
+		}
+	}
+	if suministro == (SuministroID{}) {
+		return Asignacion{}, false
+	}
+	for _, CamionMatricula := range bd.Camiones {
+		camionesDisponibles = append(camionesDisponibles, CamionMatricula.Camion)
+	}
+	AsigarCamiones(&camionesDisponibles, suministro.Suministro, &camionesAsignados)
+	matriculasCamiones := []string{}
+	for _, camion := range camionesAsignados {
+		for _, CamionMatricula := range bd.Camiones {
+			if CamionMatricula.Camion == camion {
+				matriculasCamiones = append(matriculasCamiones, CamionMatricula.Matricula)
+			}
+		}
+	}
+	asignacion := Asignacion{matriculasCamiones, id}
+	bd.Asignaciones = append(bd.Asignaciones, asignacion)
+	return asignacion, true
 }
 
 

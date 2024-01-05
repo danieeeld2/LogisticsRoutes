@@ -60,12 +60,12 @@ func TestBD(t *testing.T) {
 	if suministro != (SuministroID{}) {
 		t.Error("Suministro encontrado y no existe")
 	}
-	suministro, _ = putSuministroID("2", Suministro{}, bd)
-	if suministro != (SuministroID{Suministro: Suministro{}, ID: "2"}) {
+	suministro, _ = putSuministroID("2", Suministro{direccion:" ",tiempo:0,peso_kg:10,volumen_cm3:10,tipo:TipoSuministro(NORMAL)}, bd)
+	if suministro != (SuministroID{Suministro: Suministro{direccion:" ", tiempo: 0, peso_kg:10,volumen_cm3:10,tipo:TipoSuministro(NORMAL)}, ID: "2"}) {
 		t.Error("Suministro no actualizado")
 	}
-	asignacion, _ := postSuministroIDAsignacion("2", []string{"1234ABD"}, bd)
-	if asignacion.IDSuministro != "2" && asignacion.MatriculasCamiones[0] != "1234ABD" {
+	asignacion, _ := postSuministroIDAsignacion("2", bd)
+	if asignacion.IDSuministro != "2" && asignacion.MatriculasCamiones[0] != "1234ABE" {
 		t.Error("Asignacion no actualizado")
 	}
 	_, status := getSuministroIDAsignacion("AAAAAA", bd)
