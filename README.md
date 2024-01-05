@@ -42,7 +42,7 @@ La aplicación persigue optimizar las rutas y reducir costos, permitiendo una ma
 
 - **Task Manager**: Mage
 	- `mage build` : Construye el proyecto
-	- `mage installdeps` : Instalación de dependencias
+	- `mage install` : Instalación de dependencias
 	- `mage run` : Ejecuta el programa
 	- `mage clean` : Limpia el proyecto
 	- `mage check` : Comprueba la sintaxis
